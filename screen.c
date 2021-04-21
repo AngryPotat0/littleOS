@@ -4,7 +4,7 @@
 
 int getCursorOffset();
 void setCursorOffset(int offset);
-int printChar(char c, int col, int row, char attr);
+void printChar(char c, int col, int row, char attr);
 int getOffset(int col, int row);
 int getOffsetRow(int offset);
 int getOffsetCol(int offset);
@@ -29,14 +29,24 @@ void printChar(char character, int col, int row, char attr)
     }
 
     if(character == '\n'){
-        //TODO
+        row = getOffsetRow(offset);
+        offset = getOffset(0,row + 1);
     }
     else{
         screen[offset] = character;
         screen[offset + 1] = attr;
+        offset += 2;
     }
 
-    offset += 2;
+    setCursorOffset(offset);
+}
+
+
+void printString(char* str)
+{
+    for(int i = 0;str[i] != '\0';i++){
+        printChar(str[i],-1,-1,0);
+    }
 }
 
 void clearScreen()
@@ -60,12 +70,13 @@ int getOffsetRow(int offset)
     return offset / (2 * MAX_COLS);
 }
 
-int getOffsetCol(in offset)
+int getOffsetCol(int offset)
 {
     return (offset - getOffsetRow(offset) * 2 * MAX_COLS) / 2;
 }
 
-int getCursorOffset() {
+int getCursorOffset()
+{
     /* Use the VGA ports to get the current cursor position
      * 1. Ask for high byte of the cursor offset (data 14)
      * 2. Ask for low byte (data 15)
@@ -77,7 +88,8 @@ int getCursorOffset() {
     return offset * 2; /* Position * size of character cell */
 }
 
-void setCursorOffset(int offset) {
+void setCursorOffset(int offset)
+{
     /* Similar to get_cursor_offset, but instead of reading we write data */
     offset /= 2;
     port_byte_out(REG_SCREEN_CTRL, 14);

@@ -10,3 +10,5 @@
 
 /* Public kernel API */
 void clear_screen();
+void printChar(char character, int col, int row, char attr);
+void printString(char* str);

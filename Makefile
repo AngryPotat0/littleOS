@@ -1,4 +1,4 @@
-OBJECTS = loader.o kmain.o
+OBJECTS = loader.o kmain.o port.o screen.o util.o
 CC = gcc
 CFLAGS = -m32 -ffreestanding -fno-pic -c
 LDFLAGS = -T link.ld -melf_i386

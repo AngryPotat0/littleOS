@@ -1,6 +1,6 @@
 OBJECTS = loader.o kmain.o port.o screen.o util.o
 CC = gcc
-CFLAGS = -m32 -ffreestanding -fno-pic -c
+CFLAGS = -m32 -ffreestanding -fno-pic -Wall -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -c
 LDFLAGS = -T link.ld -melf_i386
 AS = nasm
 ASFLAGS = -f elf

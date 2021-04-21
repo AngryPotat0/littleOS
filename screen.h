@@ -9,6 +9,6 @@
 #define REG_SCREEN_DATA 0x3d5
 
 /* Public kernel API */
-void clear_screen();
+void clearScreen();
 void printChar(char character, int col, int row, char attr);
 void printString(char* str);

@@ -8,6 +8,14 @@ void printChar(char c, int col, int row, char attr);
 int getOffset(int col, int row);
 int getOffsetRow(int offset);
 int getOffsetCol(int offset);
+int screenScrolling(int curOffset);
+
+void printString(char* str)
+{
+    for(int i = 0;str[i] != '\0';i++){
+        printChar(str[i],-1,-1,0);
+    }
+}
 
 void printChar(char character, int col, int row, char attr)
 {
@@ -38,15 +46,11 @@ void printChar(char character, int col, int row, char attr)
         offset += 2;
     }
 
-    setCursorOffset(offset);
-}
-
-
-void printString(char* str)
-{
-    for(int i = 0;str[i] != '\0';i++){
-        printChar(str[i],-1,-1,0);
+    if(offset >= MAX_COLS * MAX_COLS * 2){
+        offset = screenScrolling(offset);
     }
+
+    setCursorOffset(offset);
 }
 
 void clearScreen()
@@ -58,6 +62,24 @@ void clearScreen()
         mem[i * 2 + 1] = WHITE_ON_BLACK;
     }
     setCursorOffset(getOffset(0,0));
+}
+
+int screenScrolling(int curOffset)
+{
+    for(int i = 1;i < MAX_ROWS;i++){
+        memoryCopy(
+            (char*)(VIDEO_ADDRESS + getOffset(0,i)),
+            (char*)(VIDEO_ADDRESS + getOffset(0,i - 1)),
+            MAX_COLS * 2
+        );
+    }
+    char* pos = (char*)(getOffset(0, MAX_ROWS - 1) + VIDEO_ADDRESS);
+    for(int i = 0;i < MAX_COLS;i++){
+        pos[i * 2] = ' ';
+        pos[i * 2 + 1] = WHITE_ON_BLACK;
+    }
+    curOffset -= MAX_COLS * 2;
+    return curOffset;
 }
 
 int getOffset(int col, int row)

@@ -26,3 +26,20 @@ loader:                         ; the loader label (defined as entry point in li
 
 .loop:
     jmp .loop                   ; loop forever
+
+
+
+[global gdtFlush]
+[extern gp]
+
+gdtFlush:      
+    lgdt [gp]
+    jmp 0x8:flush2
+flush2:
+    mov ax, 0x10
+    mov ds, ax
+    mov es, ax
+    mov fs, ax
+    mov gs, ax
+    mov ss, ax
+    ret

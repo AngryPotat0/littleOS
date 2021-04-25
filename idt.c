@@ -16,3 +16,12 @@ void idtInit()
 
     idtLoad();
 }
+
+void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t type, uint8_t attr)
+{
+    idt[n].offsetLow = (offset & 0xffff);
+    idt[n].offsetHigh = (offset >> 16) & 0xffff;
+    idt[n].selector = selector;
+    idt[n].zero = 0;
+    //TODO type and attr
+}

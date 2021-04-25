@@ -22,6 +22,6 @@ struct idtr{
 #define TRAP_GATE 0xf;
 
 void idtInit();
-void idtInstall(uint16_t offsetLow, uint16_t selector, uint8_t zero, uint8_t typeAttr, uint16_t offsetHigh);
+void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t type, uint8_t attr);
 
 #endif

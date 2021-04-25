@@ -36,5 +36,6 @@ struct tssEntry {
 void tssInit();
 void tssInstall();
 void tssReset();
+void tssSet();
 
 #endif

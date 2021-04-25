@@ -1,14 +1,14 @@
 #include"gdt.h"
-// #include"idt.h"
 #include"util.h"
 #include"type.h"
-
-// extern struct tssEntry tss;
+#include"tss.h"
 
 static struct gdtEntry gdt[NGDT]; // 256 gdt entry
 struct gdtPtr gp; // entry.s中使用
 
-extern void gdtFlush(); // 在loader.asm中实现 extern func in loader.asm
+struct tssEntry tss;
+
+extern void gdtFlush();
 
 void gdtInstall(uint8_t num, uint32_t base, uint32_t limit, uint8_t access, uint8_t flags)
 {
@@ -23,12 +23,6 @@ void gdtInstall(uint8_t num, uint32_t base, uint32_t limit, uint8_t access, uint
     access |= AC_RE;
     gdt[num].access = access;
 }
-
-// void tssInit() {
-//     gdtInstall(SEL_TSS, (uint32_t)&tss, sizeof(tss), AC_PR|AC_AC|AC_EX, GDT_GR); 
-//     /* for tss, access_reverse bit is 1 */
-//     gdt[SEL_TSS].access &= ~AC_RE;
-// }
 
 void gdtInit() {
     /* Setup the GDT pointer and limit */
@@ -52,7 +46,6 @@ void gdtInit() {
     /* systask code segment type: data addr: 0 limit: 4G gran: 4KB sz: 32bit */
     gdtInstall(SEL_SDATA, 0, 0xfffff, AC_RW|AC_DPL_SYST|AC_PR, GDT_GR|GDT_SZ);
 
-    // tssInit();
+    tssInit();
     gdtFlush();
-    // tssInstall();
 }

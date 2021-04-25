@@ -42,4 +42,6 @@ flush2:
     mov fs, ax
     mov gs, ax
     mov ss, ax
+    mov ax, 0x38;load tss
+    ltr ax
     ret

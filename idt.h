@@ -15,13 +15,13 @@ struct idtr{
     uint32_t base;
 }__attribute__ ((packed));
 
-#define NIDT 256;
+#define NIDT 256
 
-#define TASK_GATE 0x5;
-#define INTERRUPT_GATE 0xe;
-#define TRAP_GATE 0xf;
+#define TASK_GATE 0x5
+#define INTERRUPT_GATE 0xe
+#define TRAP_GATE 0xf
 
 void idtInit();
-void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t type, uint8_t attr);
+void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t p, uint8_t dpl, uint8_t s, uint8_t gate);
 
 #endif

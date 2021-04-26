@@ -1,3 +1,7 @@
+#ifndef SCR__
+#define SCR__
+#include"type.h"
+
 #define VIDEO_ADDRESS 0xb8000
 #define MAX_ROWS 25
 #define MAX_COLS 80
@@ -12,3 +16,6 @@
 void clearScreen();
 void printChar(char character, int col, int row, char attr);
 void printString(char* str);
+void printBin(uint32_t num, int len);//len: n bytes
+
+#endif

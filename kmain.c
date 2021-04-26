@@ -1,12 +1,10 @@
 #include"screen.h"
 #include"util.h"
+#include"idt.h"
 void main()
 {
     gdtInit();
     clearScreen();
-    char line[] = "asdjoulfo fahwsifhrwifsdj hwaxaxasaxha  agha k hkshfh faeshob";
-    printString(line);
-    char* str = "egrsdfsdj owidju hoeh awif i fahwaxaxasaxha k hkshfh fasaho\n";
-    printString(str);
-    printString("\nSTK");
+    idtInit();//can't work now
+    // printBin(101734532,4);
 }

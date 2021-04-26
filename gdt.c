@@ -24,6 +24,12 @@ void gdtInstall(uint8_t num, uint32_t base, uint32_t limit, uint8_t access, uint
     gdt[num].access = access;
 }
 
+void tssInit() {
+    gdtInstall(SEL_TSS, (uint32_t)&tss, sizeof(tss), AC_PR|AC_AC|AC_EX, GDT_GR); 
+    /* for tss, access_reverse bit is 1 */
+    gdt[SEL_TSS].access &= ~AC_RE;
+}
+
 void gdtInit() {
     /* Setup the GDT pointer and limit */
     gp.limit = (sizeof(struct gdtEntry) * NGDT) - 1;

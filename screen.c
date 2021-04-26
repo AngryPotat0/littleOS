@@ -1,10 +1,12 @@
 #include"screen.h"
 #include"port.h"
 #include"util.h"
+#include"type.h"
 
 int getCursorOffset();
 void setCursorOffset(int offset);
 void printChar(char c, int col, int row, char attr);
+void printBin_8(uint8_t num);
 int getOffset(int col, int row);
 int getOffsetRow(int offset);
 int getOffsetCol(int offset);
@@ -17,9 +19,32 @@ void printString(char* str)
     }
 }
 
+void printBin(uint32_t num, int len)
+{
+    for(int i = len - 1;i >= 0;i--)
+    {
+        printBin_8(num >> (i * 8));
+        printChar(' ',-1,-1,0);
+    }
+}
+
+void printBin_8(uint8_t num)
+{
+    int mask = 128;//1000 0000
+    for(int offset = 7;offset >= 0;offset--)
+    {
+        printChar(((num & mask) >> offset) + '0', -1, -1, 0);
+        mask = mask >> 1;
+        if(offset == 4)
+        {
+            printChar(' ', -1, -1, 0);
+        }
+    }
+}
+
 void printChar(char character, int col, int row, char attr)
 {
-    unsigned char* screen = (char*)VIDEO_ADDRESS;
+    unsigned char* screen = (unsigned char*)VIDEO_ADDRESS;
     if(!attr)attr = WHITE_ON_BLACK;
     if(col >= MAX_COLS || row >= MAX_ROWS){
         int errPos = MAX_COLS * MAX_ROWS * 2;
@@ -56,7 +81,7 @@ void printChar(char character, int col, int row, char attr)
 void clearScreen()
 {
     int screenSize = MAX_COLS * MAX_ROWS;
-    unsigned char* mem = (char*)VIDEO_ADDRESS;
+    unsigned char* mem = (unsigned char*)VIDEO_ADDRESS;
     for(int i = 0;i < screenSize;i++){
         mem[i * 2] = ' ';
         mem[i * 2 + 1] = WHITE_ON_BLACK;

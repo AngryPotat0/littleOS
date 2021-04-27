@@ -6,7 +6,7 @@
 static struct gdtEntry gdt[NGDT]; // 256 gdt entry
 struct gdtPtr gp; // entry.s中使用
 
-struct tssEntry tss;
+extern struct tssEntry tss;
 
 extern void gdtFlush();
 

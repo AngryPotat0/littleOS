@@ -6,5 +6,5 @@ void main()
     gdtInit();
     clearScreen();
     idtInit();//can't work now
-    // printBin(101734532,4);
+    printBin(101734532,4);
 }

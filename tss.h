@@ -33,9 +33,4 @@ struct tssEntry {
     uint16_t iopbOff;
 } __attribute__ ((packed));
 
-void tssInit();
-void tssInstall();
-void tssReset();
-void tssSet();
-
 #endif

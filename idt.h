@@ -17,11 +17,14 @@ struct idtr{
 
 #define NIDT 256
 
-#define TASK_GATE 0x5
-#define INTERRUPT_GATE 0xe
-#define TRAP_GATE 0xf
+#define GATE_TASK 0x5
+#define GATE_INTERRUPT 0xe
+#define GATE_TRAP 0xf
 
 void idtInit();
-void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t p, uint8_t dpl, uint8_t s, uint8_t gate);
+void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t typeAttr);
+
+void tssReset();
+void tssSet(uint16_t ss0, uint32_t esp0);
 
 #endif

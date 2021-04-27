@@ -3,11 +3,11 @@
 #include"util.h"
 #include"screen.h"
 
-struct idtEntry idt[NIDT];
+static struct idtEntry idt[NIDT];
 struct idtr idtp;
 
 extern struct tssEntry tss;
-extern void idtLoad() // entry.s
+extern void idtLoad() // loader.s
 
 void idtInit()
 {
@@ -15,19 +15,38 @@ void idtInit()
     idtp.base = (uint32_t)&(idtp);
     memset(&idt, 0, sizeof(struct idtEntry) * NIDT);
 
+    
+
     // debugIdtInstall();
     idtLoad();
 }
 
-void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t p, uint8_t dpl, uint8_t s, uint8_t gate)
+void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t typeAttr)
 {
     idt[n].offsetLow = (offset & 0xffff);
     idt[n].offsetHigh = (offset >> 16) & 0xffff;
     idt[n].selector = selector;
     idt[n].zero = 0;
     //TODO type and attr
-    idt[n].typeAttr = 0;// if we have idtInit, then why we need this?
-    idt[n].typeAttr = idt[n].typeAttr | gate | (s << 4) | (dpl << 5) | (p << 7); 
+    idt[n].typeAttr = typeAttr;
+}
+
+// 设置TSS
+void tssSet(uint16_t ss0, uint32_t esp0)
+{
+    // 清空TSS
+    memset((void *)&tss, 0, sizeof(tss));
+    tss.ss0 = ss0;
+    tss.esp0 = esp0;
+    tss.iopb_off = sizeof(tss);
+}
+
+// 重置当前进程的TSS
+void tssReset()
+{
+    // TSS用于当切换到ring0时设置堆栈
+    // 每个进程有一个内核堆栈
+    tssSet(SEL_KDATA << 3, (uint32_t)proc->stack + PAGE_SIZE);
 }
 
 // void debugIdtInstall()

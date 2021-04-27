@@ -29,7 +29,7 @@ loader:                         ; the loader label (defined as entry point in li
 
 
 
-[global gdtFlush]
+[global gdtFlush];load gdt
 [extern gp]
 
 gdtFlush:      
@@ -44,4 +44,11 @@ flush2:
     mov ss, ax
     mov ax, 0x38;load tss
     ltr ax
+    ret
+
+[global idtLoad];load idt
+[extern idtp]
+
+idtLoad:
+    lidt [idtp]
     ret

@@ -1,5 +1,6 @@
 #include"irq.h"
 #include"asm.h"
+#include"idt.h"
 
 #define PIC1		0x20		/* IO base address for master PIC */
 #define PIC2		0xA0		/* IO base address for slave PIC */
@@ -8,90 +9,14 @@
 #define PIC2_COMMAND	PIC2
 #define PIC2_DATA	(PIC2+1)
 
-void irq0_handler(void)
-{
-    outb(0x20, 0x20); //EOI
-}
+#define ICW1_ICW4	0x01		/* ICW4 (not) needed */
+#define ICW1_SINGLE	0x02		/* Single (cascade) mode */
+#define ICW1_INTERVAL4	0x04		/* Call address interval 4 (8) */
+#define ICW1_LEVEL	0x08		/* Level triggered (edge) mode */
+#define ICW1_INIT	0x10		/* Initialization - required! */
  
-void irq1_handler(void)
-{
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq2_handler(void)
-{
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq3_handler(void)
-{
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq4_handler(void)
-{
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq5_handler(void)
-{
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq6_handler(void)
-{
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq7_handler(void)
-{
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq8_handler(void)
-{
-    outb(0xA0, 0x20);
-    outb(0x20, 0x20); //EOI          
-}
- 
-void irq9_handler(void)
-{
-    outb(0xA0, 0x20);
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq10_handler(void)
-{
-    outb(0xA0, 0x20);
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq11_handler(void)
-{
-    outb(0xA0, 0x20);
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq12_handler(void)
-{
-    outb(0xA0, 0x20);
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq13_handler(void)
-{
-    outb(0xA0, 0x20);
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq14_handler(void)
-{
-    outb(0xA0, 0x20);
-    outb(0x20, 0x20); //EOI
-}
- 
-void irq15_handler(void)
-{
-    outb(0xA0, 0x20);
-    outb(0x20, 0x20); //EOI
-}
+#define ICW4_8086	0x01		/* 8086/88 (MCS-80/85) mode */
+#define ICW4_AUTO	0x02		/* Auto (normal) EOI */
+#define ICW4_BUF_SLAVE	0x08		/* Buffered mode/slave */
+#define ICW4_BUF_MASTER	0x0C		/* Buffered mode/master */
+#define ICW4_SFNM	0x10		/* Special fully nested (not) */

@@ -94,6 +94,7 @@ void idtInit()
 
     idtp.limit = (sizeof(struct idtEntry) * NIDT) - 1;
     idtp.base = (uint32_t)&(idtp);
+    timerInit(1000);
 
     // debugIdtInstall();
     idtLoad();
@@ -107,6 +108,23 @@ void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t typeAttr)
     idt[n].zero = 0;
     //TODO type and attr
     idt[n].typeAttr = typeAttr;
+}
+
+// 时钟中断 初始化 8253 PIT
+
+static void timerInit(uint32_t frequency){
+    // Intel 8253/8254 PIT芯片 I/O端口地址范围是40h~43h
+    // 输入频率为 1193180，frequency 即每秒中断次数
+    uint32_t divisor = 1193180 / frequency;
+    outb(0x43, 0x36);
+
+    // 拆分低字节和高字节
+    uint8_t low = (uint8_t)(divisor & 0xFF);
+    uint8_t hign = (uint8_t)((divisor >> 8) & 0xFF);
+    
+    // 分别写入低字节和高字节
+    outb(0x40, low);
+    outb(0x40, hign);
 }
 
 // 设置TSS

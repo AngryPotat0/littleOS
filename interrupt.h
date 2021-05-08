@@ -1,6 +1,9 @@
-#ifndef IDT__
-#define IDT__
+#ifndef INTR__
+#define INTR__
 #include"type.h"
+
+//中断服务例程函数指针类型   传入的是eax的值 指向函数参数压栈位置
+typedef void (*serverFunc)(void *);  
 
 struct idtEntry{
     uint16_t offsetLow;

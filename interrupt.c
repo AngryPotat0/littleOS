@@ -14,6 +14,44 @@ struct idtr idtp;
 struct tssEntry tss;
 extern void idtLoad(); // loader.s
 
+static char *faultMsg[] = {
+    "Division By Zero",
+    "Debug",
+    "Non Maskable Interrupt",
+    "Breakpoint",
+    "Into Detected Overflow",
+    "Out of Bounds",
+    "Invalid Opcode",
+    "No Coprocessor",
+
+    "Double Fault",
+    "Coprocessor Segment Overrun",
+    "Bad TSS",
+    "Segment Not Present",
+    "Stack Fault",
+    "General Protection Fault",
+    "Page Fault",
+    "Unknown Interrupt",
+
+    "Coprocessor Fault",
+    "Alignment Check",
+    "Machine Check",
+    "Reserved",
+    "Reserved",
+    "Reserved",
+    "Reserved",
+    "Reserved",
+
+    "Reserved",
+    "Reserved",
+    "Reserved",
+    "Reserved",
+    "Reserved",
+    "Reserved",
+    "Reserved",
+    "Reserved"
+};
+
 extern void isr0();
 extern void isr1();
 extern void isr2();
@@ -45,8 +83,16 @@ extern void isr27();
 extern void isr28();
 extern void isr29();
 extern void isr30();
-extern void isr31();
+extern void isr31();//isr0-31 is used to service exceptions
 extern void isr32();
+
+void falutHandler(void* args)
+{
+    printString("not ready yet\n");
+    //FIXME:
+    // int idx = (int)args[0];
+    // printString(faultMsg[idx]);
+}
 
 void timerServer(void *args)
 {
@@ -115,8 +161,8 @@ outb (PIC_S_DATA, 0x02); // ICW3: 设置从片连接到主片的IR2 引脚
 outb (PIC_S_DATA, 0x01); // ICW4: 8086 模式, 正常EOI
 
 /*打开主片上IR0,也就是目前只接受时钟产生的中断 */
-outb (PIC_M_DATA, 0xfe);
-outb (PIC_S_DATA, 0xff);
+outb (PIC_M_DATA, 0x00);
+outb (PIC_S_DATA, 0x00);
 
 
     idtInstall(0, (unsigned long)isr0,0x08,0x8e);//0x08:KERNEL_CODE_SEGMENT_OFFSET 0x8e:INTERRUPT_GATE
@@ -151,13 +197,19 @@ outb (PIC_S_DATA, 0xff);
     idtInstall(29, (unsigned long)isr29,0x08,0x8e);
     idtInstall(30, (unsigned long)isr30,0x08,0x8e);
     idtInstall(31, (unsigned long)isr31,0x08,0x8e);
+
     idtInstall(32, (unsigned long)isr32,0x08,0x8e);
+
+    for(int i = 0;i < 32;i++)
+    {
+        registeInterrupt(i,falutHandler);
+    }
 
     registeInterrupt(32,timerServer);
 
     idtp.limit = (sizeof(struct idtEntry) * NIDT) - 1;
     idtp.base = (uint32_t)&(idt);//这里是怎么写成idtp的
-    timerInit(1000);
+    // timerInit(1000);
 
     // debugIdtInstall();
     idtLoad();

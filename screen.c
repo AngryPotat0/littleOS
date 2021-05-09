@@ -77,7 +77,9 @@ void printChar(char character, int col, int row, char attr)
     }
 
     if(offset >= MAX_COLS * MAX_COLS * 2){
-        offset = screenScrolling(offset);
+        offset = screenScrolling(offset);//FIXME:
+        // clearScreen();
+        // offset = 0;
     }
 
     setCursorOffset(offset);

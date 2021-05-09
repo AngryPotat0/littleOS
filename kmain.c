@@ -4,9 +4,11 @@
 #include"gdt.h"
 void main()
 {
-    clearScreen();
+    clearScreen();//timer-screen
     gdtInit();
-    idtInit();//can't work now
+    idtInit();
     asm volatile("sti");
     printBin(101734532,4);
+    int k = 3 / 0;
+    // printString("asfsfsfsfsfcad\n");
 }

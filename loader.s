@@ -66,7 +66,7 @@ KERN_VGA_SELECTOR equ 0x0003<<3 + 000b
 isr%1:
 		mov al,0x20
 		out 0xa0,al
-		out 0x20,al
+		out 0x20,al		 ;stil have some questions of this
 
 		mov eax,esp      ;中断参数传入
 		push 0
@@ -78,6 +78,10 @@ isr%1:
 [GLOBAL isr%1]
 isr%1:
 		; call printMSG
+		mov al,0x20
+		out 0xa0,al
+		out 0x20,al
+
 		mov eax,esp
 		nop
 		push %1
@@ -120,9 +124,9 @@ pre_handle:
 	mov fs,ax
 	popad
 	add esp,8
-	mov al,0x20
-	out 0xA0,al
-	out 0x20,al
+	; mov al,0x20
+	; out 0xA0,al
+	; out 0x20,al
 	iret
 
 

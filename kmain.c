@@ -4,10 +4,9 @@
 #include"gdt.h"
 void main()
 {
-    gdtInit();
     clearScreen();
+    gdtInit();
     idtInit();//can't work now
     asm volatile("sti");
     printBin(101734532,4);
-    while(1);
 }

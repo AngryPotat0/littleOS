@@ -8,45 +8,45 @@
 
 serverFunc serverFuncList[256];
 
-static struct idtEntry idt[NIDT];
+struct idtEntry idt[NIDT];
 struct idtr idtp;
 
 struct tssEntry tss;
 extern void idtLoad(); // loader.s
 
-void isr0();
-void isr1();
-void isr2();
-void isr3();
-void isr4();
-void isr5();
-void isr6();
-void isr7();
-void isr8();
-void isr9();
-void isr10();
-void isr11();
-void isr12();
-void isr13();
-void isr14();
-void isr15();
-void isr16();
-void isr17();
-void isr18();
-void isr19();
-void isr20();
-void isr21();
-void isr22();
-void isr23();
-void isr24();
-void isr25();
-void isr26();
-void isr27();
-void isr28();
-void isr29();
-void isr30();
-void isr31();
-void isr32();
+extern void isr0();
+extern void isr1();
+extern void isr2();
+extern void isr3();
+extern void isr4();
+extern void isr5();
+extern void isr6();
+extern void isr7();
+extern void isr8();
+extern void isr9();
+extern void isr10();
+extern void isr11();
+extern void isr12();
+extern void isr13();
+extern void isr14();
+extern void isr15();
+extern void isr16();
+extern void isr17();
+extern void isr18();
+extern void isr19();
+extern void isr20();
+extern void isr21();
+extern void isr22();
+extern void isr23();
+extern void isr24();
+extern void isr25();
+extern void isr26();
+extern void isr27();
+extern void isr28();
+extern void isr29();
+extern void isr30();
+extern void isr31();
+extern void isr32();
 
 void timerServer(void *args)
 {
@@ -54,7 +54,7 @@ void timerServer(void *args)
 }
 
 void registeInterrupt(int idx,serverFunc target_func){
-    // printString("we run!\n");
+    // printString("run!\n");
     // target_func(NULL);
 	serverFuncList[idx] = target_func;
 }
@@ -156,7 +156,7 @@ outb (PIC_S_DATA, 0xff);
     registeInterrupt(32,timerServer);
 
     idtp.limit = (sizeof(struct idtEntry) * NIDT) - 1;
-    idtp.base = (uint32_t)&(idtp);
+    idtp.base = (uint32_t)&(idt);//这里是怎么写成idtp的
     timerInit(1000);
 
     // debugIdtInstall();
@@ -169,7 +169,6 @@ void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t typeAttr)
     idt[n].offsetHigh = (offset >> 16) & 0xffff;
     idt[n].selector = selector;
     idt[n].zero = 0;
-    //TODO type and attr
     idt[n].typeAttr = typeAttr;
 }
 

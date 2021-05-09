@@ -25,7 +25,7 @@ loader:                         ; the loader label (defined as entry point in li
         ; The assembly code
 	; call printMSG
 	; call isr32
-    call main    
+    call main  
 
 .loop:
     jmp .loop                   ; loop forever
@@ -55,7 +55,7 @@ flush2:
 idtLoad:
 	; call printMSG
     lidt [idtp]
-	sti
+	; sti
     ret
 
 KERN_DATA_SELECTOR equ 0x0002<<3 + 000b
@@ -64,8 +64,6 @@ KERN_VGA_SELECTOR equ 0x0003<<3 + 000b
 %macro NO_ERROCODE 1     ;带中断号参数宏
 [GLOBAL isr%1]
 isr%1:
-		call printMSG
-
 		mov al,0x20
 		out 0xa0,al
 		out 0x20,al
@@ -79,6 +77,7 @@ isr%1:
 %macro HAVE_ERROCODE 1
 [GLOBAL isr%1]
 isr%1:
+		; call printMSG
 		mov eax,esp
 		nop
 		push %1

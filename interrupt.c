@@ -106,6 +106,7 @@ void registeInterrupt(int idx,serverFunc target_func){
 }
 
 void funcRoute(int int_no,void * args){
+    // printInt(int_no);
 	serverFuncList[int_no](args);
 }
 
@@ -148,21 +149,21 @@ void idtInit()
     #define PIC_S_CTRL 0xa0 //从片控制端口
     #define PIC_S_DATA 0xa1 //从片数据端口
 
-     /*初始化主片 */
-outb (PIC_M_CTRL, 0x11); // ICW1: 边沿触发,级联8259, 需要ICW4
-outb (PIC_M_DATA, 0x20); // ICW2: 起始中断向量号为0x20, 也就是IR[0-7] 为 0x20 ～ 0x27
-outb (PIC_M_DATA, 0x04); // ICW3: IR2 接从片
-outb (PIC_M_DATA, 0x01); // ICW4: 8086 模式, 正常EOI
+        /*初始化主片 */
+    outb (PIC_M_CTRL, 0x11); // ICW1: 边沿触发,级联8259, 需要ICW4
+    outb (PIC_M_DATA, 0x20); // ICW2: 起始中断向量号为0x20, 也就是IR[0-7] 为 0x20 ～ 0x27
+    outb (PIC_M_DATA, 0x04); // ICW3: IR2 接从片
+    outb (PIC_M_DATA, 0x01); // ICW4: 8086 模式, 正常EOI
 
-/*初始化从片 */
-outb (PIC_S_CTRL, 0x11); // ICW1: 边沿触发,级联8259, 需要ICW4
-outb (PIC_S_DATA, 0x28); // ICW2: 起始中断向量号为0x28, 也就是IR[8-15]为0x28 ～ 0x2F
-outb (PIC_S_DATA, 0x02); // ICW3: 设置从片连接到主片的IR2 引脚
-outb (PIC_S_DATA, 0x01); // ICW4: 8086 模式, 正常EOI
+    /*初始化从片 */
+    outb (PIC_S_CTRL, 0x11); // ICW1: 边沿触发,级联8259, 需要ICW4
+    outb (PIC_S_DATA, 0x28); // ICW2: 起始中断向量号为0x28, 也就是IR[8-15]为0x28 ～ 0x2F
+    outb (PIC_S_DATA, 0x02); // ICW3: 设置从片连接到主片的IR2 引脚
+    outb (PIC_S_DATA, 0x01); // ICW4: 8086 模式, 正常EOI
 
-/*打开主片上IR0,也就是目前只接受时钟产生的中断 */
-outb (PIC_M_DATA, 0x00);
-outb (PIC_S_DATA, 0x00);
+    /*打开主片上IR0,也就是目前只接受时钟产生的中断 */
+    outb (PIC_M_DATA, 0x00);
+    outb (PIC_S_DATA, 0x00);
 
 
     idtInstall(0, (unsigned long)isr0,0x08,0x8e);//0x08:KERNEL_CODE_SEGMENT_OFFSET 0x8e:INTERRUPT_GATE
@@ -209,7 +210,7 @@ outb (PIC_S_DATA, 0x00);
 
     idtp.limit = (sizeof(struct idtEntry) * NIDT) - 1;
     idtp.base = (uint32_t)&(idt);//这里是怎么写成idtp的
-    // timerInit(1000);
+    timerInit(1000);
 
     // debugIdtInstall();
     idtLoad();

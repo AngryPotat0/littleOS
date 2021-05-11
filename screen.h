@@ -18,5 +18,6 @@ void printChar(char character, int col, int row, char attr);
 void printString(char* str);
 void printMSG();
 void printBin(uint32_t num, int len);//len: n bytes
+void printInt(int num);
 
 #endif

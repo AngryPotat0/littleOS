@@ -9,6 +9,6 @@ void main()
     idtInit();
     asm volatile("sti");
     printBin(101734532,4);
-    int k = 3 / 0;
+    // int k = 3 / 0;
     // printString("asfsfsfsfsfcad\n");
 }

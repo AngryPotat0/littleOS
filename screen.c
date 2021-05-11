@@ -11,6 +11,7 @@ int getOffset(int col, int row);
 int getOffsetRow(int offset);
 int getOffsetCol(int offset);
 int screenScrolling(int curOffset);
+void printInt(int num);
 
 void printMSG()
 {
@@ -22,6 +23,27 @@ void printString(char* str)
     for(int i = 0;str[i] != '\0';i++){
         printChar(str[i],-1,-1,0);
     }
+}
+
+void printInt(int num)
+{
+    int k = 0;
+    char c;
+    while(num != 0)
+    {
+        k = k * 10;
+        k = k + (num % 10);
+        num = num / 10;
+    }
+    while(k != 0)
+    {
+        c = k % 10 + '0';
+        k = k / 10;
+        printChar(c,-1,-1,0);
+    }
+    if(num == 0)
+        printChar('0',-1,-1,0);
+    printChar('\n',-1,-1,0);
 }
 
 void printBin(uint32_t num, int len)
@@ -77,9 +99,9 @@ void printChar(char character, int col, int row, char attr)
     }
 
     if(offset >= MAX_COLS * MAX_COLS * 2){
-        offset = screenScrolling(offset);//FIXME:
-        // clearScreen();
-        // offset = 0;
+        // offset = screenScrolling(offset);//FIXME: some bugs with screenScrolling,fuck it
+        clearScreen();
+        offset = 0;
     }
 
     setCursorOffset(offset);

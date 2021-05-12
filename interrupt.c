@@ -234,27 +234,3 @@ void tssSet(uint16_t ss0, uint32_t esp0)
     tss.esp0 = esp0;
     tss.iopbOff = sizeof(tss);
 }
-
-// 重置当前进程的TSS
-// void tssReset()
-// {
-//     // TSS用于当切换到ring0时设置堆栈
-//     // 每个进程有一个内核堆栈
-//     tssSet(SEL_KDATA << 3, (uint32_t)proc->stack + PAGE_SIZE);
-// }
-
-// void debugIdtInstall()
-// {
-//     for(int i = 0;i < 15;i++)
-//     {
-//         idtInstall(i,1835008 + i,i,i % 2,i % 4,(i + 1) % 2,(i + 10) % 16);
-//     }
-//     for(int n = 0;n < 15;n++)
-//     {
-//         printBin(idt[n].offsetLow,2);
-//         printBin(idt[n].selector,2);
-//         printBin(idt[n].zero,1);
-//         printBin(idt[n].typeAttr,1);
-//         printBin(idt[n].offsetHigh,2);
-//     }
-// }

@@ -31,12 +31,8 @@ void tssInit() {
 }
 
 void gdtInit() {
-    /* Setup the GDT pointer and limit */
     gp.limit = (sizeof(struct gdtEntry) * NGDT) - 1;
     gp.base = (uint32_t)&gdt;
-
-    // 注意：启用分页GDT_GR后，limit的单位是4KB，故0xfffff*4KB=4GB
-
     /* null descriptor */
     gdtInstall(0, 0, 0, 0, 0);
     /* kernel code segment type: code addr: 0 limit: 4G gran: 4KB sz: 32bit */

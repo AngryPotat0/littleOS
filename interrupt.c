@@ -88,10 +88,7 @@ extern void isr32();
 
 void falutHandler(void* args)
 {
-    printString("not ready yet\n");
-    //FIXME:
-    // int idx = (int)args[0];
-    // printString(faultMsg[idx]);
+    printString((char*)args);
 }
 
 void timerServer(void *args)
@@ -100,14 +97,19 @@ void timerServer(void *args)
 }
 
 void registeInterrupt(int idx,serverFunc target_func){
-    // printString("run!\n");
-    // target_func(NULL);
 	serverFuncList[idx] = target_func;
 }
 
 void funcRoute(int int_no,void * args){
     // printInt(int_no);
-	serverFuncList[int_no](args);
+    if(int_no < 32)
+    {
+        serverFuncList[int_no]((void*)faultMsg[int_no]);
+    }
+    else
+    {
+        serverFuncList[int_no](args);
+    }
 }
 
 // 时钟中断 初始化 8253 PIT

@@ -64,10 +64,6 @@ KERN_VGA_SELECTOR equ 0x0003<<3 + 000b
 %macro NO_ERROCODE 1     ;带中断号参数宏
 [GLOBAL isr%1]
 isr%1:
-		mov al,0x20
-		out 0xa0,al
-		out 0x20,al		 ;stil have some questions of this
-
 		mov eax,esp      ;中断参数传入
 		push 0
 		push %1          ;中断号
@@ -77,11 +73,6 @@ isr%1:
 %macro HAVE_ERROCODE 1
 [GLOBAL isr%1]
 isr%1:
-		; call printMSG
-		mov al,0x20
-		out 0xa0,al
-		out 0x20,al
-
 		mov eax,esp
 		nop
 		push %1
@@ -92,41 +83,29 @@ isr%1:
 
 [EXTERN funcRoute]
 pre_handle:
-	pushad               ;压入八个32位
-	mov ecx,[ss:esp+32]
+	mov ecx,[esp]
 	mov ebx,eax
-	mov ax,ss
-	and eax,0x0000FFFF
-	push eax
-	mov ax,gs
-	and eax,0x0000FFFF
-	push eax
-	mov ax,KERN_DATA_SELECTOR
-	mov ss,ax
-	mov es,ax
-	mov fs,ax
-	mov ax,KERN_VGA_SELECTOR
-	mov gs,ax
-	; push ds
-	; push es
-	; push fs
-	; push gs
-	; pushad
+	push ds
+	push es
+	push fs
+	push gs
+	pushad
+
+	mov al,0x20
+	out 0xa0,al
+	out 0x20,al
+
 	push ebx     ;传入void *
 	push ecx     ;传入int类型中断号
 	call funcRoute
+
 	add esp,8
-	pop eax
-	mov gs,ax
-	pop eax
-	mov ss,ax
-	mov es,ax
-	mov fs,ax
 	popad
+	pop gs
+	pop fs
+	pop es
+	pop ds
 	add esp,8
-	; mov al,0x20
-	; out 0xA0,al
-	; out 0x20,al
 	iret
 
 

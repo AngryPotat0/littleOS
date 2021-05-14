@@ -2,13 +2,14 @@
 #include"util.h"
 #include"interrupt.h"
 #include"gdt.h"
+#include"asm.h"
 void main()
 {
     clearScreen();
     gdtInit();
     idtInit();
-    asm volatile("sti");
-    // printBin(101734532,4);
+    sti();
+    printString("Hello");
     int k = 3 / 0;
     // printString("asfsfsfsfsfcad\n");
 }

@@ -34,45 +34,45 @@
 00000000000i[      ]   Sound support: SB16 ES1370
 00000000000i[      ]   USB support: UHCI OHCI EHCI xHCI
 00000000000i[      ]   VGA extension support: vbe cirrus voodoo
-00000000000i[MEM0  ] allocated memory at 0x7fcbf95dc010. after alignment, vector=0x7fcbf95dd000
+00000000000i[MEM0  ] allocated memory at 0x7fc9ecddb010. after alignment, vector=0x7fc9ecddc000
 00000000000i[MEM0  ] 32.00MB
 00000000000i[MEM0  ] mem block size = 0x00020000, blocks=256
 00000000000i[MEM0  ] rom at 0xfffe0000/131072 ('/usr/share/bochs/BIOS-bochs-latest')
-00000000000i[      ] lt_dlhandle is 0x55d645c63e70
+00000000000i[      ] lt_dlhandle is 0x560b0b756c10
 00000000000i[PLUGIN] loaded plugin libbx_hdimage.so
-00000000000i[      ] lt_dlhandle is 0x55d645c72430
+00000000000i[      ] lt_dlhandle is 0x560b0b7653e0
 00000000000i[PLUGIN] loaded plugin libbx_soundalsa.so
 00000000000i[WAVOUT] ALSA: opened default PCM output device
 00000000000i[WAVOUT] changed sample rate to 44101
-00000000000i[      ] lt_dlhandle is 0x55d6465b5400
+00000000000i[      ] lt_dlhandle is 0x560b0c0a86c0
 00000000000i[PLUGIN] loaded plugin libbx_pci.so
-00000000000i[      ] lt_dlhandle is 0x55d645ccfe30
+00000000000i[      ] lt_dlhandle is 0x560b0b7c4780
 00000000000i[PLUGIN] loaded plugin libbx_pci2isa.so
-00000000000i[      ] lt_dlhandle is 0x55d645c6f560
+00000000000i[      ] lt_dlhandle is 0x560b0b7624e0
 00000000000i[PLUGIN] loaded plugin libbx_usb_uhci.so
-00000000000i[      ] lt_dlhandle is 0x55d645ccf480
+00000000000i[      ] lt_dlhandle is 0x560b0b7c2b80
 00000000000i[PLUGIN] loaded plugin libbx_acpi.so
-00000000000i[      ] lt_dlhandle is 0x55d645ccf010
+00000000000i[      ] lt_dlhandle is 0x560b0b7c2220
 00000000000i[PLUGIN] loaded plugin libbx_hpet.so
-00000000000i[      ] lt_dlhandle is 0x55d645cce570
+00000000000i[      ] lt_dlhandle is 0x560b0b7c17a0
 00000000000i[PLUGIN] loaded plugin libbx_cmos.so
-00000000000i[      ] lt_dlhandle is 0x55d6465c6180
+00000000000i[      ] lt_dlhandle is 0x560b0c0b96b0
 00000000000i[PLUGIN] loaded plugin libbx_dma.so
-00000000000i[      ] lt_dlhandle is 0x55d6465c6980
+00000000000i[      ] lt_dlhandle is 0x560b0c0b9eb0
 00000000000i[PLUGIN] loaded plugin libbx_pic.so
-00000000000i[      ] lt_dlhandle is 0x55d6465c71e0
+00000000000i[      ] lt_dlhandle is 0x560b0c0ba710
 00000000000i[PLUGIN] loaded plugin libbx_pit.so
-00000000000i[      ] lt_dlhandle is 0x55d6465c7a20
+00000000000i[      ] lt_dlhandle is 0x560b0c0baf50
 00000000000i[PLUGIN] loaded plugin libbx_vga.so
-00000000000i[      ] lt_dlhandle is 0x55d6465e8fd0
+00000000000i[      ] lt_dlhandle is 0x560b0c0dc500
 00000000000i[PLUGIN] loaded plugin libbx_floppy.so
-00000000000i[      ] lt_dlhandle is 0x55d6465e97f0
+00000000000i[      ] lt_dlhandle is 0x560b0c0dcd20
 00000000000i[PLUGIN] loaded plugin libbx_ioapic.so
-00000000000i[      ] lt_dlhandle is 0x55d6465e9ff0
+00000000000i[      ] lt_dlhandle is 0x560b0c0dd520
 00000000000i[PLUGIN] loaded plugin libbx_keyboard.so
-00000000000i[      ] lt_dlhandle is 0x55d6465ea7c0
+00000000000i[      ] lt_dlhandle is 0x560b0c0ddcf0
 00000000000i[PLUGIN] loaded plugin libbx_harddrv.so
-00000000000i[      ] lt_dlhandle is 0x55d6465eca20
+00000000000i[      ] lt_dlhandle is 0x560b0c0dff50
 00000000000i[PLUGIN] loaded plugin libbx_pci_ide.so
 00000000000i[PLUGIN] init_dev of 'pci' plugin device by virtual method
 00000000000i[DEV   ] i440FX PMC present at device 0, function 0
@@ -80,7 +80,7 @@
 00000000000i[DEV   ] PIIX3 PCI-to-ISA bridge present at device 1, function 0
 00000000000i[PLUGIN] init_dev of 'cmos' plugin device by virtual method
 00000000000i[CMOS  ] Using local time for initial clock
-00000000000i[CMOS  ] Setting initial clock to: Thu May 13 22:55:03 2021 (time0=1620917703)
+00000000000i[CMOS  ] Setting initial clock to: Fri May 14 18:20:41 2021 (time0=1620987641)
 00000000000i[PLUGIN] init_dev of 'dma' plugin device by virtual method
 00000000000i[DMA   ] channel 4 used by cascade
 00000000000i[PLUGIN] init_dev of 'pic' plugin device by virtual method
@@ -229,163 +229,66 @@
 00000319005i[BIOS  ] Shutdown flag 0
 00000319637i[BIOS  ] ram_size=0x02000000
 00000320080i[BIOS  ] ram_end=32MB
-00000332220i[BIOS  ] Found 1 cpu(s)
-00000345908i[BIOS  ] bios_table_addr: 0x000f9db8 end=0x000fcc00
-00000804826i[PCI   ] i440FX PMC write to PAM register 59 (TLB Flush)
-00001263847i[P2ISA ] PCI IRQ routing: PIRQA# set to 0x0b
-00001263872i[P2ISA ] PCI IRQ routing: PIRQB# set to 0x09
-00001263897i[P2ISA ] PCI IRQ routing: PIRQC# set to 0x0b
-00001263922i[P2ISA ] PCI IRQ routing: PIRQD# set to 0x09
-00001263932i[P2ISA ] write: ELCR2 = 0x0a
-00001264708i[BIOS  ] PIIX3/PIIX4 init: elcr=00 0a
-00001278447i[BIOS  ] PCI: bus=0 devfn=0x00: vendor_id=0x8086 device_id=0x1237 class=0x0600
-00001280774i[BIOS  ] PCI: bus=0 devfn=0x08: vendor_id=0x8086 device_id=0x7000 class=0x0601
-00001282940i[BIOS  ] PCI: bus=0 devfn=0x09: vendor_id=0x8086 device_id=0x7010 class=0x0101
-00001283181i[PIDE  ] BAR #4: i/o base address = 0xc000
-00001283835i[BIOS  ] region 4: 0x0000c000
-00001285901i[BIOS  ] PCI: bus=0 devfn=0x0a: vendor_id=0x8086 device_id=0x7020 class=0x0c03
-00001286117i[UHCI  ] BAR #4: i/o base address = 0xc020
-00001286771i[BIOS  ] region 4: 0x0000c020
-00001286910i[UHCI  ] new IRQ line = 9
-00001288855i[BIOS  ] PCI: bus=0 devfn=0x0b: vendor_id=0x8086 device_id=0x7113 class=0x0680
-00001289094i[ACPI  ] new IRQ line = 11
-00001289115i[ACPI  ] new IRQ line = 9
-00001289149i[ACPI  ] new PM base address: 0xb000
-00001289163i[ACPI  ] new SM base address: 0xb100
-00001289190i[PCI   ] setting SMRAM control register to 0x4a
-00001518866i[CPU0  ] Enter to System Management Mode
-00001518866i[CPU0  ] enter_system_management_mode: temporary disable VMX while in SMM mode
-00001518876i[CPU0  ] RSM: Resuming from System Management Mode
-00001748471i[PCI   ] setting SMRAM control register to 0x0a
-00001775205i[BIOS  ] MP table addr=0x000f9e90 MPC table addr=0x000f9dc0 size=0xc8
-00001777063i[BIOS  ] SMBIOS table addr=0x000f9ea0
-00001779181i[BIOS  ] ACPI tables: RSDP addr=0x000f9fd0 ACPI DATA addr=0x01ff0000 size=0xff8
-00001782447i[BIOS  ] Firmware waking vector 0x1ff00cc
-00001784878i[PCI   ] i440FX PMC write to PAM register 59 (TLB Flush)
-00001785605i[BIOS  ] bios_table_cur_addr: 0x000f9ff4
-00001914479i[VBIOS ] VGABios $Id: vgabios.c 226 2020-01-02 21:36:23Z vruppert $
-00001914550i[BXVGA ] VBE known Display Interface b0c0
-00001914582i[BXVGA ] VBE known Display Interface b0c5
-00001917225i[VBIOS ] VBE Bios $Id: vbe.c 228 2020-01-02 23:09:02Z vruppert $
-00005704051i[BIOS  ] IDE time out
-00315105933i[BIOS  ] Booting from 07c0:0000
-00315206432i[BIOS  ] int13_harddisk: function 41, unmapped device for ELDL=80
-00315210109i[BIOS  ] int13_harddisk: function 08, unmapped device for ELDL=80
-00315213772i[BIOS  ] *** int 15h function AX=00c0, BX=0000 not yet supported!
-00320102425e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00321471939e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00324211395e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00325597708e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00328352757e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00332476542e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00335226939e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00336621350e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00337151857e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00337157890e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00337952102e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00339334366e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00343514234e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00344856611e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00347634748e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00348960929e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00351647145e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00354425885e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00359877313e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00368169678e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00370670326e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00372275202e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00373665564e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00377849481e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00379235794e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00382026681e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00387620427e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00393038257e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00394421124e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00395782540e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00397185049e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00404084384e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00406802389e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00409601374e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00411003883e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00416456948e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00419203899e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00420614506e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00421979971e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00428859061e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00438544456e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00441257809e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00444048696e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00450968879e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00452334947e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00456494570e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00457831692e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00460481467e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00463146232e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00464499550e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00470023860e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00472762713e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00478199582e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00483705887e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00489204094e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00490618750e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00496020987e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00497391104e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00498728829e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00501343369e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00504138908e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00505798485e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00506851402e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00513690002e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00516424806e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00517847560e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00519184682e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00521923535e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00526009928e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00526048701e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00528763863e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00531558799e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00532925470e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00539793016e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00541175280e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00542508956e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00543919563e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00545272881e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00549347475e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00553463162e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00554869720e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00556218989e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00557609351e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00558942424e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00560284198e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00561662413e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00563020383e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00566220563e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00566226596e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00572623511e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00573969937e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00575347549e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00578110093e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00580836799e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00589052233e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00595782113e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00598531907e[CPU0  ] interrupt(): gate descriptor is not valid sys seg (vector=0x27)
-00604420000p[SDL2  ] >>PANIC<< POWER button turned off.
-00604420000i[CPU0  ] CPU is in protected mode (active)
-00604420000i[CPU0  ] CS.mode = 32 bit
-00604420000i[CPU0  ] SS.mode = 32 bit
-00604420000i[CPU0  ] EFER   = 0x00000000
-00604420000i[CPU0  ] | EAX=0000000f  EBX=00104c94  ECX=00000000  EDX=000b8eab
-00604420000i[CPU0  ] | ESP=00104b9c  EBP=00104ba4  ESI=0002cef0  EDI=0002cef1
-00604420000i[CPU0  ] | IOPL=0 id vip vif ac vm rf nt of df if tf sf zf AF PF cf
-00604420000i[CPU0  ] | SEG sltr(index|ti|rpl)     base    limit G D
-00604420000i[CPU0  ] |  CS:0008( 0001| 0|  0) 00000000 ffffffff 1 1
-00604420000i[CPU0  ] |  DS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
-00604420000i[CPU0  ] |  SS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
-00604420000i[CPU0  ] |  ES:0010( 0002| 0|  0) 00000000 ffffffff 1 1
-00604420000i[CPU0  ] |  FS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
-00604420000i[CPU0  ] |  GS:0018( 0003| 0|  0) 00000000 ffffffff 1 1
-00604420000i[CPU0  ] | EIP=001004f5 (001004f5)
-00604420000i[CPU0  ] | CR0=0x60000011 CR2=0x00000000
-00604420000i[CPU0  ] | CR3=0x00000000 CR4=0x00000000
-00604420000i[CMOS  ] Last time is 1620918307 (Thu May 13 23:05:07 2021)
-00604420000i[SIM   ] quit_sim called with exit code 1
+00000332202i[BIOS  ] Found 1 cpu(s)
+00000345890i[BIOS  ] bios_table_addr: 0x000f9db8 end=0x000fcc00
+00000804808i[PCI   ] i440FX PMC write to PAM register 59 (TLB Flush)
+00001263829i[P2ISA ] PCI IRQ routing: PIRQA# set to 0x0b
+00001263854i[P2ISA ] PCI IRQ routing: PIRQB# set to 0x09
+00001263879i[P2ISA ] PCI IRQ routing: PIRQC# set to 0x0b
+00001263904i[P2ISA ] PCI IRQ routing: PIRQD# set to 0x09
+00001263914i[P2ISA ] write: ELCR2 = 0x0a
+00001264690i[BIOS  ] PIIX3/PIIX4 init: elcr=00 0a
+00001278429i[BIOS  ] PCI: bus=0 devfn=0x00: vendor_id=0x8086 device_id=0x1237 class=0x0600
+00001280756i[BIOS  ] PCI: bus=0 devfn=0x08: vendor_id=0x8086 device_id=0x7000 class=0x0601
+00001282922i[BIOS  ] PCI: bus=0 devfn=0x09: vendor_id=0x8086 device_id=0x7010 class=0x0101
+00001283163i[PIDE  ] BAR #4: i/o base address = 0xc000
+00001283817i[BIOS  ] region 4: 0x0000c000
+00001285883i[BIOS  ] PCI: bus=0 devfn=0x0a: vendor_id=0x8086 device_id=0x7020 class=0x0c03
+00001286099i[UHCI  ] BAR #4: i/o base address = 0xc020
+00001286753i[BIOS  ] region 4: 0x0000c020
+00001286892i[UHCI  ] new IRQ line = 9
+00001288837i[BIOS  ] PCI: bus=0 devfn=0x0b: vendor_id=0x8086 device_id=0x7113 class=0x0680
+00001289076i[ACPI  ] new IRQ line = 11
+00001289097i[ACPI  ] new IRQ line = 9
+00001289131i[ACPI  ] new PM base address: 0xb000
+00001289145i[ACPI  ] new SM base address: 0xb100
+00001289172i[PCI   ] setting SMRAM control register to 0x4a
+00001518848i[CPU0  ] Enter to System Management Mode
+00001518848i[CPU0  ] enter_system_management_mode: temporary disable VMX while in SMM mode
+00001518858i[CPU0  ] RSM: Resuming from System Management Mode
+00001748453i[PCI   ] setting SMRAM control register to 0x0a
+00001775187i[BIOS  ] MP table addr=0x000f9e90 MPC table addr=0x000f9dc0 size=0xc8
+00001777045i[BIOS  ] SMBIOS table addr=0x000f9ea0
+00001779163i[BIOS  ] ACPI tables: RSDP addr=0x000f9fd0 ACPI DATA addr=0x01ff0000 size=0xff8
+00001782429i[BIOS  ] Firmware waking vector 0x1ff00cc
+00001784860i[PCI   ] i440FX PMC write to PAM register 59 (TLB Flush)
+00001785587i[BIOS  ] bios_table_cur_addr: 0x000f9ff4
+00001914461i[VBIOS ] VGABios $Id: vgabios.c 226 2020-01-02 21:36:23Z vruppert $
+00001914532i[BXVGA ] VBE known Display Interface b0c0
+00001914564i[BXVGA ] VBE known Display Interface b0c5
+00001917207i[VBIOS ] VBE Bios $Id: vbe.c 228 2020-01-02 23:09:02Z vruppert $
+00005704033i[BIOS  ] IDE time out
+00274601985i[BIOS  ] Booting from 07c0:0000
+00274702484i[BIOS  ] int13_harddisk: function 41, unmapped device for ELDL=80
+00274706161i[BIOS  ] int13_harddisk: function 08, unmapped device for ELDL=80
+00274709824i[BIOS  ] *** int 15h function AX=00c0, BX=0000 not yet supported!
+00464160000p[SDL2  ] >>PANIC<< POWER button turned off.
+00464160000i[CPU0  ] CPU is in protected mode (active)
+00464160000i[CPU0  ] CS.mode = 32 bit
+00464160000i[CPU0  ] SS.mode = 32 bit
+00464160000i[CPU0  ] EFER   = 0x00000000
+00464160000i[CPU0  ] | EAX=00104cb4  EBX=00104cb4  ECX=00000020  EDX=00000004
+00464160000i[CPU0  ] | ESP=00104cc0  EBP=00067ee0  ESI=0002cef0  EDI=0002cef1
+00464160000i[CPU0  ] | IOPL=0 id vip vif ac vm rf nt of df IF tf sf zf af PF cf
+00464160000i[CPU0  ] | SEG sltr(index|ti|rpl)     base    limit G D
+00464160000i[CPU0  ] |  CS:0008( 0001| 0|  0) 00000000 ffffffff 1 1
+00464160000i[CPU0  ] |  DS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00464160000i[CPU0  ] |  SS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00464160000i[CPU0  ] |  ES:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00464160000i[CPU0  ] |  FS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00464160000i[CPU0  ] |  GS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00464160000i[CPU0  ] | EIP=00100faa (00100faa)
+00464160000i[CPU0  ] | CR0=0x60000011 CR2=0x00000000
+00464160000i[CPU0  ] | CR3=0x00000000 CR4=0x00000000
+00464160000i[CMOS  ] Last time is 1620988105 (Fri May 14 18:28:25 2021)
+00464160000i[SIM   ] quit_sim called with exit code 1

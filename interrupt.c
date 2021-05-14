@@ -93,7 +93,7 @@ void falutHandler(void* args)
 
 void timerServer(void *args)
 {
-    printString("T\n");
+    // printString("T\n");
 }
 
 void registeInterrupt(int idx,serverFunc target_func){

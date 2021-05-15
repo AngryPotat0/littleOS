@@ -3,19 +3,23 @@
 #include"../include/interrupt.h"
 #include"../include/gdt.h"
 #include"../include/asm.h"
+#include"../include/keyboard.h"
+#include"../include/timer.h"
 
 void init()
 {
     clearScreen();
     gdtInit();
     idtInit();
-    sti();
+    timerInit(1000);
+    keyboardInit();
 }
 
 void main()
 {
     init();
-    printString("Hello");
-    int k = 3 / 0;
+    sti();
+    printString("lo");
+    // int k = 3 / 0;
     // printString("asfsfsfsfsfcad\n");
 }

@@ -36,10 +36,10 @@
 # 	rm -rf *.o kernel.elf
 
 
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c libc/*.c)
 HEADERS = $(wildcard include/*.h)
 
-OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o} 
+OBJ = ${C_SOURCES:.c=.o}
 
 LDFLAGS = -T link.ld -melf_i386
 
@@ -65,6 +65,7 @@ kernel.elf: kernel/loader.o ${OBJ}
 
 run: os.iso
 	bochs -f bch.txt -q
+# qemu-system-i386 -m 512M -smp 2 -boot c -cpu host  --enable-kvm -cdrom os.iso
 
 
 %.o: %.c ${HEADERS}
@@ -74,5 +75,5 @@ run: os.iso
 	nasm $< -f elf -o $@
 
 clean:
-	rm -rf *.bin *.dis *.o os-image.bin *.elf
-	rm -rf kernel/*.o boot/*.bin drivers/*.o boot/*.o cpu/*.o
+	rm -rf *.elf
+	rm -rf kernel/*.o iso/boot/*.elf drivers/*.o cpu/*.o libc/*.o

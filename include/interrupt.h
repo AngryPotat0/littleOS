@@ -26,6 +26,7 @@ struct idtr{
 
 void idtInit();
 void idtInstall(int n,uint32_t offset, uint16_t selector, uint8_t typeAttr);
+void registeInterrupt(int idx,serverFunc target_func);
 
 void tssReset();
 void tssSet(uint16_t ss0, uint32_t esp0);

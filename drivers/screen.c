@@ -12,10 +12,21 @@ int getOffsetRow(int offset);
 int getOffsetCol(int offset);
 int screenScrolling(int curOffset);
 void printInt(int num);
+void printBackspace();
 
 void printMSG()
 {
     printString("MSG\n");
+}
+
+void printBackspace()
+{
+    unsigned char* screen = (unsigned char*)VIDEO_ADDRESS;
+    int offset = getCursorOffset();
+    offset -= 2;
+    screen[offset] = ' ';
+    screen[offset + 1] = WHITE_ON_BLACK;
+    setCursorOffset(offset);
 }
 
 void printString(char* str)

@@ -14,8 +14,3 @@ void *memset( void *dest, uint8_t val, uint32_t count )
 		*temp++ = val;
 	return(dest);
 }
-
-void int_to_str(int val, char res[])
-{
-    return;
-}

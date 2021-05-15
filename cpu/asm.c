@@ -1,5 +1,5 @@
-#include"type.h"
-#include"asm.h"
+#include"../include/type.h"
+#include"../include/asm.h"
 /* read a byte from a port */
 inline uint8_t inb (uint16_t port){
     uint8_t rv;

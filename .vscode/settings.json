@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "asm.h": "c",
+        "gdt.h": "c",
+        "util.h": "c",
+        "tss.h": "c"
+    }
+}

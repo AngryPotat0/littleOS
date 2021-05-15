@@ -1,10 +1,10 @@
-#include"interrupt.h"
-#include"type.h"
-#include"util.h"
-#include"screen.h"
-#include"asm.h"
-#include"gdt.h"
-#include"tss.h"
+#include"../include/interrupt.h"
+#include"../include/type.h"
+#include"../include/util.h"
+#include"../include/screen.h"
+#include"../include/asm.h"
+#include"../include/gdt.h"
+#include"../include/tss.h"
 
 serverFunc serverFuncList[256];
 

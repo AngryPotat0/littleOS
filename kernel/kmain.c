@@ -1,8 +1,8 @@
-#include"screen.h"
-#include"util.h"
-#include"interrupt.h"
-#include"gdt.h"
-#include"asm.h"
+#include"../include/screen.h"
+#include"../include/util.h"
+#include"../include/interrupt.h"
+#include"../include/gdt.h"
+#include"../include/asm.h"
 void main()
 {
     clearScreen();

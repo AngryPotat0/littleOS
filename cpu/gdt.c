@@ -1,7 +1,7 @@
-#include"gdt.h"
-#include"util.h"
-#include"type.h"
-#include"tss.h"
+#include"../include/gdt.h"
+#include"../include/util.h"
+#include"../include/type.h"
+#include"../include/tss.h"
 
 static struct gdtEntry gdt[NGDT]; // 256 gdt entry
 struct gdtPtr gp; // entry.s中使用

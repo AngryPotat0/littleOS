@@ -45,8 +45,7 @@ LDFLAGS = -T link.ld -melf_i386
 
 
 CC = i386-elf-gcc
-# -g: Use debugging symbols in gcc
-# CFLAGS = -g
+
 
 os.iso: kernel.elf
 	cp kernel.elf iso/boot/kernel.elf
@@ -61,17 +60,13 @@ os.iso: kernel.elf
 				-o os.iso                       \
 				iso
 
-# kernel.bin: boot/kernel_entry.o ${OBJ}
-# 	i386-elf-ld -o $@ -Ttext 0x1000 $^ --oformat binary
-
 kernel.elf: kernel/loader.o ${OBJ}
 	i386-elf-ld $(LDFLAGS) $^ -o kernel.elf
 
 run: os.iso
 	bochs -f bch.txt -q
 
-# Generic rules for wildcards
-# To make an object, always compile from its .c
+
 %.o: %.c ${HEADERS}
 	${CC} ${CFLAGS} -ffreestanding -c -std=c11 -nostdlib -nostartfiles $< -o $@
 

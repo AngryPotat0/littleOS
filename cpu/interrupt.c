@@ -2,6 +2,7 @@
 #include"../include/type.h"
 #include"../include/util.h"
 #include"../include/screen.h"
+#include"../include/port.h"
 #include"../include/asm.h"
 #include"../include/gdt.h"
 #include"../include/tss.h"
@@ -102,6 +103,10 @@ void registeInterrupt(int idx,serverFunc target_func){
 
 void funcRoute(int int_no,void * args){
     // printInt(int_no);
+    if(int_no >= 40)
+        port_byte_out(0x20,0x20);//slave
+    port_byte_out(0x20,0x20);//master
+
     if(int_no < 32)
     {
         serverFuncList[int_no]((void*)faultMsg[int_no]);

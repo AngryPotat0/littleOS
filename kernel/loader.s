@@ -64,6 +64,7 @@ KERN_VGA_SELECTOR equ 0x0003<<3 + 000b
 %macro NO_ERROCODE 1     ;带中断号参数宏
 [GLOBAL isr%1]
 isr%1:
+		cli
 		mov eax,esp      ;中断参数传入
 		push 0
 		push %1          ;中断号
@@ -73,6 +74,7 @@ isr%1:
 %macro HAVE_ERROCODE 1
 [GLOBAL isr%1]
 isr%1:
+		cli
 		mov eax,esp
 		nop
 		push %1
@@ -91,10 +93,6 @@ pre_handle:
 	push gs
 	pushad
 
-	mov al,0x20
-	out 0xa0,al
-	out 0x20,al
-
 	push ebx     ;传入void *
 	push ecx     ;传入int类型中断号
 	call funcRoute
@@ -106,6 +104,7 @@ pre_handle:
 	pop es
 	pop ds
 	add esp,8
+	sti
 	iret
 
 

@@ -1,7 +1,11 @@
 ENTRY(loader)                /* the name of the entry label */
-
+OUTPUT_FORMAT(elf32-i386)
 SECTIONS {
     . = 0x00100000;          /* the code should be loaded at 1 MB */
+
+    .__mbHeader : {
+      *(.__mbHeader)
+   }
 
     .text ALIGN (0x1000):   /* align at 4 KB */
     {
@@ -9,7 +13,6 @@ SECTIONS {
         *(.rodata*)             /* all text sections from all files */
     }
 
-   
     .data ALIGN (0x1000) :   /* align at 4 KB */
     {
         *(.data)             /* all data sections from all files */

@@ -38,8 +38,9 @@
 
 C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c libc/*.c)
 HEADERS = $(wildcard include/*.h)
+CFLAGS = -g -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs
 
-OBJ = ${C_SOURCES:.c=.o}
+OBJ = ${C_SOURCES:.c=.o  cpu/interrupt.o}
 
 LDFLAGS = -T link.ld -melf_i386
 
@@ -69,7 +70,7 @@ run: os.iso
 
 
 %.o: %.c ${HEADERS}
-	${CC} ${CFLAGS} -ffreestanding -c -std=c11 -nostdlib -nostartfiles $< -o $@
+	${CC} ${CFLAGS} -ffreestanding -c -std=c11 $< -o $@
 
 %.o: %.s
 	nasm $< -f elf -o $@

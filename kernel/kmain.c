@@ -19,7 +19,7 @@ void main()
 {
     init();
     sti();
-    printString("lo");
+    printString("LittleOS:\n>");
     // int k = 3 / 0;
     // printString("asfsfsfsfsfcad\n");
 }

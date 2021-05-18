@@ -3,6 +3,7 @@
 #include"../include/string.h"
 #include"../include/type.h"
 #include"../include/port.h"
+#include"../include/shell.h"
 
 #define BACKSPACE 0x0E
 #define ENTER 0x1C
@@ -44,9 +45,9 @@ static void keyboard(void* args) {
     if (scancode == BACKSPACE) {
         backspace(key_buffer);
         printBackspace();
-    } else if (scancode == ENTER) {
+    } else if (scancode == ENTER){
         printString("\n");
-        //TODO: add a kernel-controlled function
+        userInput(key_buffer);
         key_buffer[0] = '\0';
     } else {
         char letter = sc_ascii[(int)scancode];

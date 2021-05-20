@@ -5,6 +5,7 @@
 #include"../include/asm.h"
 #include"../include/keyboard.h"
 #include"../include/timer.h"
+#include"../include/vmm.h"
 
 void init()
 {
@@ -13,6 +14,7 @@ void init()
     idtInit();
     timerInit(1000);
     keyboardInit();
+    vmmInit();
 }
 
 void main()

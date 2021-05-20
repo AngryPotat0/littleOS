@@ -77,4 +77,4 @@ run: os.iso
 
 clean:
 	rm -rf *.elf
-	rm -rf kernel/*.o iso/boot/*.elf drivers/*.o cpu/*.o libc/*.o
+	rm -rf kernel/*.o iso/boot/*.elf drivers/*.o cpu/*.o libc/*.o user/*.o

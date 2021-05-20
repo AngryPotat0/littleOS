@@ -34,21 +34,22 @@ loader:                         ; the loader label (defined as entry point in li
 .loop:
     jmp .loop                   ; loop forever
 
-; [global table_768]
-; reMap:			;remapped kernel to 0xc0000000
-; 	mov eax, 0x0
-; 	mov ebx, 0x100000
-; 	.fill_table:
-; 		mov ecx, ebx
-; 		or ecx, 3
-; 		mov [table_768+eax*4], ecx
-; 		add ebx, 4096
-; 		inc eax
-; 		cmp eax, 1024
-; 		je .end
-; 		jmp .fill_table
-; 	.end:
-; 		ret
+[global reMap]
+[extern table_768]
+reMap:			;remapped kernel to 0xc0000000
+	mov eax, 0x0
+	mov ebx, 0x100000
+	.fill_table:
+		mov ecx, ebx
+		or ecx, 3
+		mov [table_768+eax*4], ecx
+		add ebx, 4096
+		inc eax
+		cmp eax, 1024
+		je .end
+		jmp .fill_table
+	.end:
+		ret
 
 
 

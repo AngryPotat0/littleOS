@@ -3,6 +3,7 @@
         "asm.h": "c",
         "gdt.h": "c",
         "util.h": "c",
-        "tss.h": "c"
+        "tss.h": "c",
+        "type.h": "c"
     }
 }

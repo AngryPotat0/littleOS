@@ -1,5 +1,5 @@
 #include"../include/gdt.h"
-#include"../include/util.h"
+#include"../include/memory.h"
 #include"../include/type.h"
 #include"../include/tss.h"
 

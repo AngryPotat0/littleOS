@@ -1,6 +1,6 @@
 #include"../include/interrupt.h"
 #include"../include/type.h"
-#include"../include/util.h"
+#include"../include/memory.h"
 #include"../include/screen.h"
 #include"../include/port.h"
 #include"../include/asm.h"

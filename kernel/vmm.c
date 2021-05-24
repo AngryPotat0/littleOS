@@ -29,7 +29,7 @@ void vmmInit()
     for(unsigned int i = 0;i < 1024;i++)
     {
         firstPageTable[i] = (i * 0x1000) | 3;
-        table_768[i] = (i * 0x1000 + 0xC0100000) | 3;
+        table_768[i] = (i * 0x1000 + 0xC0000000) | 3;
     }
     // reMap();
     pageDirectory[0] = (uint32_t)firstPageTable | 3;

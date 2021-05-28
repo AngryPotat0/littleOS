@@ -4,6 +4,7 @@
 uint32_t pageDirectory[1024] __attribute__((aligned(4096)));
 uint32_t firstPageTable[1024] __attribute__((aligned(4096)));
 uint32_t table_768[1024] __attribute__((aligned(4096)));
+uint32_t table_4[1024] __attribute__((aligned(4096)));
 
 // extern void reMap();
 
@@ -29,10 +30,12 @@ void vmmInit()
     for(unsigned int i = 0;i < 1024;i++)
     {
         firstPageTable[i] = (i * 0x1000) | 3;
-        table_768[i] = (i * 0x1000 + 0xC0000000) | 3;
+        table_4[i] = (i * 0x1000 + 0x01000000) | 3;
+        table_768[i] = table_4[i];
     }
     // reMap();
     pageDirectory[0] = (uint32_t)firstPageTable | 3;
+    pageDirectory[4] = (uint32_t)table_4 | 3;
     pageDirectory[768] = (uint32_t)table_768 | 3;
     loadPageDirectory(pageDirectory);
     vmmEnable();

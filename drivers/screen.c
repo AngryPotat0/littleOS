@@ -107,10 +107,8 @@ void printChar(char character, int col, int row, char attr)
         offset += 2;
     }
 
-    if(offset >= MAX_COLS * MAX_COLS * 2){
-        // offset = screenScrolling(offset);//FIXME: some bugs with screenScrolling,fuck it
-        clearScreen();
-        offset = 0;
+    if(offset >= MAX_COLS * MAX_ROWS * 2){
+        offset = screenScrolling(offset);
     }
 
     setCursorOffset(offset);

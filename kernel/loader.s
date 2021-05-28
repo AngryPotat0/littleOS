@@ -7,12 +7,15 @@ FLAGS        equ 0x0            ; multiboot flags
 CHECKSUM     equ -MAGIC_NUMBER  ; calculate the checksum
                                 ; (magic number + checksum + flags should equal 0)
 KERNEL_STACK_SIZE equ 4096      ; size of stack in bytes
+mb_stack_size equ 4096
 
 section .__mbHeader
 align 0x4
 	dd MAGIC_NUMBER             ; write the magic number to the machine code,
     dd FLAGS                    ; the flags,
     dd CHECKSUM                 ; and the checksum
+	; mb_stack:
+    ; 	resb mb_stack_size
 
 section .__mbText
 align 0x4
@@ -21,10 +24,12 @@ start:
 	lea ebx, [loader] ; load the address of the label in ebx
     jmp ebx           ; jump to the label
 
+
+
 section .bss
-align 4                                     ; align at 4 bytes
-kernel_stack:                               ; label points to beginning of memory
-    resb KERNEL_STACK_SIZE                  ; reserve stack for the kernel
+align 4                         ; align at 4 bytes
+kernel_stack:
+    resb KERNEL_STACK_SIZE      ; reserve stack for the kernel
 
 section .text:                  ; start of the text (code) section
 align 4                         ; the code must be 4 byte aligned
@@ -33,30 +38,10 @@ align 4                         ; the code must be 4 byte aligned
 loader:                         ; the loader label (defined as entry point in linker script)
     mov esp, kernel_stack + KERNEL_STACK_SIZE   ; point esp to the start of the
                                                 ; stack (end of memory area)
-        ; The assembly code
-	; call printMSG
-	; call isr32
     call main  
 
 .loop:
     jmp .loop                   ; loop forever
-
-[global reMap]
-[extern table_768]
-reMap:			;remapped kernel to 0xc0000000
-	mov eax, 0x0
-	mov ebx, 0x100000
-	.fill_table:
-		mov ecx, ebx
-		or ecx, 3
-		mov [table_768+eax*4], ecx
-		add ebx, 4096
-		inc eax
-		cmp eax, 1024
-		je .end
-		jmp .fill_table
-	.end:
-		ret
 
 
 

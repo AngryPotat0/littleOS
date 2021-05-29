@@ -3,7 +3,7 @@ OUTPUT_FORMAT(elf32-i386)
 SECTIONS {
     . = 0x01000000;          /* the code should be loaded at 16 MB */
 
-	_kernel_start = .;
+	kernel_start = .;
     .__mbHeader : {
       *(.__mbHeader)
    }
@@ -32,5 +32,5 @@ SECTIONS {
         *(COMMON)            /* all COMMON sections from all files */
         *(.bss)              /* all bss sections from all files */
     }
-    _kernel_end = .;
+    kernel_end = .;
 }

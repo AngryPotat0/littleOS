@@ -6,6 +6,7 @@
 #include"../include/keyboard.h"
 #include"../include/timer.h"
 #include"../include/vmm.h"
+#include"../include/pmm.h"
 
 void init()
 {
@@ -17,11 +18,12 @@ void init()
     vmmInit();
 }
 
-void main()
+void main(int kernelStart,int kernelEnd)//TODO:
 {
     init();
     sti();
     printString("LittleOS:\n>");
+
     // int k = 3 / 0;
     // printString("asfsfsfsfsfcad\n");
 }

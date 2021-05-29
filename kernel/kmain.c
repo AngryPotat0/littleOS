@@ -13,12 +13,13 @@ void init()
     clearScreen();
     gdtInit();
     idtInit();
+    pmmInit();
     timerInit(1000);
     keyboardInit();
     vmmInit();
 }
 
-void main(int kernelStart,int kernelEnd)//TODO:
+void main()//TODO:
 {
     init();
     sti();

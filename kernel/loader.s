@@ -1,8 +1,11 @@
 extern main
 extern kernel_start
 extern kernel_end
-; [EXTERN	printMSG]
+
 [global mutiboot_addr32]
+[global kernel_start_addr]
+[global kernel_end_addr]
+
 global start                   ; the entry symbol for ELF
 
 MAGIC_NUMBER equ 0x1BADB002     ; define the magic number constant
@@ -40,14 +43,18 @@ align 4
 mutiboot_addr32:
 	dd 0x0
 
+kernel_start_addr:
+	dd kernel_start
+
+kernel_end_addr:
+	dd kernel_end
+
 section .text:                  ; start of the text (code) section
 align 4                         ; the code must be 4 byte aligned
 
 loader:                         ; the loader label (defined as entry point in linker script)
     mov esp, kernel_stack + KERNEL_STACK_SIZE   ; point esp to the start of the
                                                 ; stack (end of memory area)
-	push kernel_end
-	push kernel_start
     call main  
 
 .loop:

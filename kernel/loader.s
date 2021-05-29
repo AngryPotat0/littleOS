@@ -61,6 +61,41 @@ loader:                         ; the loader label (defined as entry point in li
     jmp .loop                   ; loop forever
 
 
+[GLOBAL switch_to]
+switchTo:
+	mov [eax+28],esp
+	mov eax,[esp+4]
+	mov [eax],ebp
+	mov [eax+4],ebx
+	mov [eax+8],ecx
+	mov [eax+12],edx
+	mov [eax+16],esi
+	mov [eax+20],edi
+	push ebx
+	mov ebx,eax
+	pushf
+	pop eax
+	mov [ebx+24],eax
+	mov eax,ebx
+	pop ebx
+
+	mov eax,[esp+8]
+	mov esp,[eax+28]
+	mov ebp,[eax]
+	mov ebx,[eax+4]
+	mov ecx,[eax+8]
+	mov edx,[eax+12]
+	mov esi,[eax+16]
+	mov edi,[eax+20]
+	add eax,24
+	push dword [eax] ;eflags
+	popf	
+
+	mov al,0x20         
+	out 0xA0,al
+	out 0x20,al
+	
+	ret
 
 [global gdtFlush];load gdt
 [extern gp]

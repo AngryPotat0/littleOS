@@ -7,6 +7,7 @@
 #include"../include/timer.h"
 #include"../include/vmm.h"
 #include"../include/pmm.h"
+#include"../include/thread.h"
 
 void init()
 {
@@ -16,7 +17,20 @@ void init()
     pmmInit();
     timerInit(1000);
     keyboardInit();
-    vmmInit();
+    // vmmInit();
+    threadInit();
+}
+
+int at = 0;
+
+void *func(void *args)
+{
+    for(int i = 0;i < 1000;i++)
+    {
+        cli();
+        printString("a");
+        sti();
+    }
 }
 
 void main()//TODO:
@@ -24,7 +38,13 @@ void main()//TODO:
     init();
     sti();
     printString("LittleOS:\n>");
-
-    // int k = 3 / 0;
-    // printString("asfsfsfsfsfcad\n");
+    threadCreate(1,func,NULL,pmmAlloc(),1);
+    for(int i = 0;i < 1000;i++)
+    {
+        cli();
+        printString("b");
+        sti();
+    }
+    int k = 3 / 0;
+    printString("asfsfsfsfsfcad\n");
 }

@@ -2,6 +2,7 @@
 #include"../include/port.h"
 #include"../include/memory.h"
 #include"../include/type.h"
+#include"../include/string.h"
 
 int getCursorOffset();
 void setCursorOffset(int offset);
@@ -38,21 +39,9 @@ void printString(char* str)
 
 void printInt(int num)
 {
-    int k = 0;
-    char c;
-    while(num != 0)
-    {
-        k = k * 10;
-        k = k + (num % 10);
-        num = num / 10;
-    }
-    while(k != 0)
-    {
-        c = k % 10 + '0';
-        k = k / 10;
-        printChar(c,-1,-1,0);
-    }
-    printChar('\n',-1,-1,0);
+    char list[100];
+    intToStr(num,list);
+    printString(list);
 }
 
 void printBin(uint32_t num, int len)

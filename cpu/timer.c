@@ -2,10 +2,21 @@
 #include"../include/port.h"
 #include"../include/interrupt.h"
 #include"../include/asm.h"
+#include"../include/thread.h"
 
+extern TCB *curThread;
 void timerServer(void *args)
 {
     // printString("T\n");
+    if(curThread->timeLeft == 0)
+    {
+        schdule();
+    }
+    else
+    {
+        curThread->timeCounter += 1;
+        curThread->timeLeft -= 1;
+    }
 }
 
 void timerInit(uint32_t frequency){

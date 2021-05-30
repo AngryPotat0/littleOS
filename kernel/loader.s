@@ -61,7 +61,12 @@ loader:                         ; the loader label (defined as entry point in li
     jmp .loop                   ; loop forever
 
 
-[GLOBAL switch_to]
+[global getEsp]
+getEsp:
+	mov eax,esp
+	ret
+
+[global switchTo]
 switchTo:
 	mov [eax+28],esp
 	mov eax,[esp+4]

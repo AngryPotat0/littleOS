@@ -133,6 +133,7 @@ idtLoad:
 [GLOBAL isr%1]
 isr%1:
 		cli
+		push eax
 		mov eax,esp      ;中断参数传入
 		push 0
 		push %1          ;中断号
@@ -143,6 +144,7 @@ isr%1:
 [GLOBAL isr%1]
 isr%1:
 		cli
+		push eax
 		mov eax,esp
 		nop
 		push %1
@@ -172,6 +174,7 @@ pre_handle:
 	pop es
 	pop ds
 	add esp,8
+	pop eax
 	sti
 	iret
 

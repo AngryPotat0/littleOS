@@ -21,4 +21,6 @@ void printBin(uint32_t num, int len);//len: n bytes
 void printInt(int num);
 void printBackspace();
 
+void STOPROLL();
+
 #endif

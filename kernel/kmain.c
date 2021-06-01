@@ -9,6 +9,8 @@
 #include"../include/pmm.h"
 #include"../include/thread.h"
 
+int at = 0;
+
 void init()
 {
     clearScreen();
@@ -21,30 +23,18 @@ void init()
     threadInit();
 }
 
-int at = 0;
-
-void *func(void *args)
-{
-    for(int i = 0;i < 1000;i++)
-    {
-        cli();
-        printString("a");
-        sti();
-    }
-}
-
 void main()//TODO:
 {
+    int k = 0;
     init();
     sti();
     printString("LittleOS:\n>");
-    threadCreate(1,func,NULL,pmmAlloc(),1);
-    for(int i = 0;i < 1000;i++)
+    // __asm__ __volatile__ ("xchg %bx, %bx");
+    for(int i = 0;i < 100000;i++)
     {
-        cli();
-        printString("b");
-        sti();
+        at += 1;
     }
-    int k = 3 / 0;
-    printString("asfsfsfsfsfcad\n");
+    printInt(at);
+    printString("\n");
+    printInt(k);
 }

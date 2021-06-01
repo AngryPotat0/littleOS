@@ -15,6 +15,13 @@ int screenScrolling(int curOffset);
 void printInt(int num);
 void printBackspace();
 
+static int stop = 0;
+
+void STOPROLL()
+{
+    stop = 1;
+}
+
 void printMSG()
 {
     printString("MSG\n");
@@ -69,6 +76,8 @@ void printBin_8(uint8_t num)
 
 void printChar(char character, int col, int row, char attr)
 {
+    if(stop)
+        return;
     unsigned char* screen = (unsigned char*)VIDEO_ADDRESS;
     if(!attr)attr = WHITE_ON_BLACK;
     if(col >= MAX_COLS || row >= MAX_ROWS){

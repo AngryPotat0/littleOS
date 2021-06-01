@@ -3,11 +3,14 @@
 #include"../include/interrupt.h"
 #include"../include/asm.h"
 #include"../include/thread.h"
+#include"../include/screen.h"
 
 extern TCB *curThread;
+extern int at;
 void timerServer(void *args)
 {
-    // printString("T\n");
+    if(at > 16000000)
+        STOPROLL();
     if(curThread->timeLeft == 0)
     {
         schdule();

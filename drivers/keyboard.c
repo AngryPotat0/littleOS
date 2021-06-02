@@ -1,5 +1,5 @@
 #include"../include/interrupt.h"
-#include"../include/screen.h"
+#include"../include/printf.h"
 #include"../include/string.h"
 #include"../include/type.h"
 #include"../include/port.h"
@@ -46,14 +46,14 @@ static void keyboard(void* args) {
         backspace(key_buffer);
         printBackspace();
     } else if (scancode == ENTER){
-        printString("\n");
+        printf("\n");
         userInput(key_buffer);
         key_buffer[0] = '\0';
     } else {
         char letter = sc_ascii[(int)scancode];
         char str[2] = {letter, '\0'};
         append(key_buffer, letter);
-        printString(str);
+        printf(str);
     }
 }
 

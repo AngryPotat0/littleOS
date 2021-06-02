@@ -2,7 +2,7 @@
 #include"../include/thread.h"
 #include"../include/pmm.h"
 #include"../include/asm.h"
-#include"../include/screen.h"
+#include"../include/printf.h"
 
 #define TIME_CONT 2
 TCB *curThread;
@@ -59,7 +59,7 @@ void threadRemove()
     cli();
     if(curThread->tid == 0)
     {
-        printString("ERROR:main thread can't use exit()\n");
+        printf("ERROR:main thread can't use exit()\n");
         return;
     }
     TCB * thread = curThread;

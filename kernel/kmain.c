@@ -1,4 +1,4 @@
-#include"../include/screen.h"
+#include"../include/printf.h"
 #include"../include/memory.h"
 #include"../include/interrupt.h"
 #include"../include/gdt.h"
@@ -28,13 +28,5 @@ void main()//TODO:
     int k = 0;
     init();
     sti();
-    printString("LittleOS:\n>");
-    // __asm__ __volatile__ ("xchg %bx, %bx");
-    for(int i = 0;i < 100000;i++)
-    {
-        at += 1;
-    }
-    printInt(at);
-    printString("\n");
-    printInt(k);
+    printf("LittleOS:\n>");
 }

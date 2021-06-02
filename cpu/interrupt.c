@@ -1,7 +1,7 @@
 #include"../include/interrupt.h"
 #include"../include/type.h"
 #include"../include/memory.h"
-#include"../include/screen.h"
+#include"../include/printf.h"
 #include"../include/port.h"
 #include"../include/asm.h"
 #include"../include/gdt.h"
@@ -90,7 +90,7 @@ extern void isr33();
 
 void falutHandler(void* args)
 {
-    printString((char*)args);
+    printf((char*)args);
 }
 
 void registeInterrupt(int idx,serverFunc target_func){

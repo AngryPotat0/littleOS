@@ -7,12 +7,10 @@
 int getCursorOffset();
 void setCursorOffset(int offset);
 void printChar(char c, int col, int row, char attr);
-void printBin_8(uint8_t num);
 int getOffset(int col, int row);
 int getOffsetRow(int offset);
 int getOffsetCol(int offset);
 int screenScrolling(int curOffset);
-void printInt(int num);
 void printBackspace();
 
 static int stop = 0;
@@ -20,11 +18,6 @@ static int stop = 0;
 void STOPROLL()
 {
     stop = 1;
-}
-
-void printMSG()
-{
-    printString("MSG\n");
 }
 
 void printBackspace()
@@ -37,41 +30,9 @@ void printBackspace()
     setCursorOffset(offset);
 }
 
-void printString(char* str)
+void putChar(char c)
 {
-    for(int i = 0;str[i] != '\0';i++){
-        printChar(str[i],-1,-1,0);
-    }
-}
-
-void printInt(int num)
-{
-    char list[100];
-    intToStr(num,list);
-    printString(list);
-}
-
-void printBin(uint32_t num, int len)
-{
-    for(int i = len - 1;i >= 0;i--)
-    {
-        printBin_8(num >> (i * 8));
-        printChar(' ',-1,-1,0);
-    }
-}
-
-void printBin_8(uint8_t num)
-{
-    int mask = 128;//1000 0000
-    for(int offset = 7;offset >= 0;offset--)
-    {
-        printChar(((num & mask) >> offset) + '0', -1, -1, 0);
-        mask = mask >> 1;
-        if(offset == 4)
-        {
-            printChar(' ', -1, -1, 0);
-        }
-    }
+    printChar(c,-1,-1,0);
 }
 
 void printChar(char character, int col, int row, char attr)

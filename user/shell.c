@@ -1,6 +1,6 @@
 #include"../include/string.h"
 #include"../include/memory.h"
-#include"../include/screen.h"
+#include"../include/printf.h"
 #include"../include/asm.h"
 
 void userInput(char* inputBuffer)
@@ -9,7 +9,8 @@ void userInput(char* inputBuffer)
     {
         hlt();
     }
-    printString("You said:");
-    printString(inputBuffer);
+    printf("You said:");
+    printf(inputBuffer);
     printString("\n>");
+    printf("You said:%s\n>",inputBuffer);
 }

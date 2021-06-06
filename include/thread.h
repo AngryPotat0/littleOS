@@ -41,7 +41,7 @@ extern void switchTo(void *curContext, void *nextContext);
 extern uint32_t getEsp();
 
 void threadInit();
-void threadCreate(uint32_t id,threadFunction func,void *args,uint32_t pageAddr,uint32_t pageCounte);
+void threadCreate(uint32_t *id,threadFunction func,void *args,uint32_t pageAddr,uint32_t pageCounte);
 void schdule();
 void exit();
 

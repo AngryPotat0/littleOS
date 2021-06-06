@@ -15,7 +15,7 @@ void printInt(int num,int base)
     }
     if(sign < 0)
         lis[i++] = '-';
-    for(i = i - 1;i > 0;i--)putChar(lis[i]);
+    for(i = i - 1;i >= 0;i--)putChar(lis[i]);
 }
 
 void printStrings(char *str)

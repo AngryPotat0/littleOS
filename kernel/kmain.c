@@ -23,10 +23,19 @@ void init()
     threadInit();
 }
 
+void *func(void *args)
+{
+    for(int i = 0;i < 10000;i++)
+        at++;
+    return;
+}
+
 void main()//TODO:
 {
-    int k = 0;
     init();
     sti();
     printf("LittleOS:\n>");
+    for(int i = 0;i < 10000;i++)
+        at++;
+    printf("at=%d\n",at);
 }

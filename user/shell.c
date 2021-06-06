@@ -9,8 +9,5 @@ void userInput(char* inputBuffer)
     {
         hlt();
     }
-    printf("You said:");
-    printf(inputBuffer);
-    printString("\n>");
     printf("You said:%s\n>",inputBuffer);
 }

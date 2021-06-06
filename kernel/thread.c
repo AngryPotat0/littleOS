@@ -8,6 +8,8 @@
 TCB *curThread;
 TCB mainThread;
 
+static int threadID = 1;
+
 void threadInit()
 {
     curThread = &mainThread;
@@ -20,8 +22,9 @@ void threadInit()
     curThread->pageAddr = 0;
 }
 
-void threadCreate(uint32_t id,threadFunction func,void *args,uint32_t pageAddr,uint32_t pageCounte)
+void threadCreate(uint32_t *id,threadFunction func,void *args,uint32_t pageAddr,uint32_t pageCounte)
 {
+    *id = (threadID++);
     cli();
     TCB *tcb = (TCB*)(pageAddr);
     tcb->kernelStackTop = pageAddr + pageCounte * 4096;

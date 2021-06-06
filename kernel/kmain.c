@@ -25,9 +25,8 @@ void init()
 
 void *func(void *args)
 {
-    for(int i = 0;i < 10000;i++)
+    for(int i = 0;i < 100000;i++)
         at++;
-    return;
 }
 
 void main()//TODO:
@@ -35,7 +34,9 @@ void main()//TODO:
     init();
     sti();
     printf("LittleOS:\n>");
-    for(int i = 0;i < 10000;i++)
+    uint32_t id;
+    threadCreate(&id,func,NULL,pmmAlloc(),1);
+    for(int i = 0;i < 100000;i++)
         at++;
     printf("at=%d\n",at);
 }

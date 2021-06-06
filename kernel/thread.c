@@ -81,3 +81,18 @@ void exit()
 }
 
 #undef TIME_CONT
+
+void mutexInit(mutex *m)
+{
+    m->flags = 0;
+}
+
+void spinlock(mutex *m)
+{
+    return;
+}
+
+void spinUnlock(mutex *m)
+{
+    return;
+}

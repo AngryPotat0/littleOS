@@ -35,6 +35,11 @@ typedef struct TCB{
     threadContext context;
 }TCB;
 
+typedef struct mutex{
+    int flags;   
+}mutex;
+
+
 typedef void *threadFunction(void *args);
 
 extern void switchTo(void *curContext, void *nextContext);
@@ -44,5 +49,8 @@ void threadInit();
 void threadCreate(uint32_t *id,threadFunction func,void *args,uint32_t pageAddr,uint32_t pageCounte);
 void schdule();
 void exit();
+void mutexInit(mutex *m);
+void spinlock(mutex *m);
+void spinUnlock(mutex *m);
 
 #endif

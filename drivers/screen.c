@@ -86,14 +86,12 @@ void clearScreen()
 
 int screenScrolling(int curOffset)
 {
-    for(int i = 1;i < MAX_ROWS;i++){
-        memoryCopy(
-            (char*)(VIDEO_ADDRESS + getOffset(0,i)),
-            (char*)(VIDEO_ADDRESS + getOffset(0,i - 1)),
-            MAX_COLS * 2
-        );
-    }
-    char* pos = (char*)(getOffset(0, MAX_ROWS - 1) + VIDEO_ADDRESS);
+    memoryCopy(
+        (char*)(VIDEO_ADDRESS + getOffset(0,1)),
+        (char*)(VIDEO_ADDRESS),
+        MAX_COLS * (MAX_ROWS - 1) * 2
+    );
+    char *pos = (char*)(getOffset(0,MAX_ROWS - 1) + VIDEO_ADDRESS);
     for(int i = 0;i < MAX_COLS;i++){
         pos[i * 2] = ' ';
         pos[i * 2 + 1] = WHITE_ON_BLACK;

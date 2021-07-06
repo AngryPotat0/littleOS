@@ -1,4 +1,4 @@
-#ifndef POT__
+#ifndef PT__
 #define PT__
 
 unsigned char port_byte_in (unsigned short port);

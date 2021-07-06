@@ -35,7 +35,7 @@ void main()//TODO:
     sti();
     printf("LittleOS:\n>");
     uint32_t id;
-    threadCreate(&id,func,NULL,pmmAlloc(),1);
+    // threadCreate(&id,func,NULL,pmmAlloc(),1);
     for(int i = 0;i < 100000;i++)
         at++;
     printf("at=%d\n",at);

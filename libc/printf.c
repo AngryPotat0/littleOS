@@ -7,12 +7,14 @@ void printInt(int num,int base)
 {
     char lis[20];
     int i = 0;
-    int sign = num > 0 ? 1 : -1;
-    while (num != 0)
+    int sign = num >= 0 ? 1 : ((num = -num),(-1));
+    // int sign = num >= 0 ? 1 : -1;
+    // if(num < 0)num = -num;
+    do
     {
         lis[i++] = digits[num % base];
         num /= base;
-    }
+    }while (num != 0);
     if(sign < 0)
         lis[i++] = '-';
     for(i = i - 1;i >= 0;i--)putChar(lis[i]);

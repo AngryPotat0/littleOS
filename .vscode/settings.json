@@ -4,7 +4,8 @@
         "gdt.h": "c",
         "util.h": "c",
         "tss.h": "c",
-        "type.h": "c"
+        "type.h": "c",
+        "thread.h": "c"
     },
     "powermode.enabled": true,
 }

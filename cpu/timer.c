@@ -4,6 +4,7 @@
 #include"../include/asm.h"
 #include"../include/thread.h"
 #include"../include/screen.h"
+#include"../include/printf.h"
 
 extern TCB *curThread;
 extern int at;
@@ -13,6 +14,7 @@ void timerServer(void *args)
         STOPROLL();
     if(curThread->timeLeft == 0)
     {
+        // printf("schdule\n");
         schdule();
     }
     else

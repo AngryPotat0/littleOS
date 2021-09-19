@@ -82,17 +82,26 @@ void exit()
 
 #undef TIME_CONT
 
-void mutexInit(mutex *m)
+void mutexInit(int *m)
 {
-    m->flags = 0;
+    *m = 0;
 }
 
-void spinlock(mutex *m)
+int testAndSet(int * src,int value)
 {
-    return;
+    __asm__("xchg %0, %1" : "+q" (value), "+m" (*src));
+    return value;
 }
 
-void spinUnlock(mutex *m)
+void spinlock(int *m)
 {
-    return;
+    // while (testAndSet(m,1) == 1);
+    while(!__sync_bool_compare_and_swap(m, 0, 1));
+}
+
+void spinUnlock(int volatile *m)
+{
+    // m->flags = 0;
+    __asm__ __volatile__("":::"memory"); // acts as a memory barrier.
+    *m = 0;
 }

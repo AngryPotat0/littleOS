@@ -3,6 +3,19 @@
 
 #include"../include/type.h"
 
+
+
+#define LOCK_PREFIX    "lock;"  
+#define __sync_bool_compare_and_swap(mem, oldval, newval) \  
+  ({ __typeof (*mem) ret;                             \  
+        __asm __volatile (LOCK_PREFIX "cmpxchgl %2, %1;sete %%al; movzbl %%al,%%eax"                \  
+                        : "=a" (ret), "=m" (*mem)                  \  
+                        : "r" (newval), "m" (*mem), "a" (oldval)\  
+                        :"memory");         \  
+                            ret; }) 
+
+
+
 typedef enum taskStatus{
     TASK_RUNNING,
     TASK_READY,
@@ -49,8 +62,8 @@ void threadInit();
 void threadCreate(uint32_t *id,threadFunction func,void *args,uint32_t pageAddr,uint32_t pageCounte);
 void schdule();
 void exit();
-void mutexInit(mutex *m);
-void spinlock(mutex *m);
-void spinUnlock(mutex *m);
+void mutexInit(int *m);
+void spinlock(int *m);
+void spinUnlock(int volatile *m);
 
 #endif

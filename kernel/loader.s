@@ -69,7 +69,7 @@ getEsp:
 [global switchTo]
 switchTo:
 	mov [eax+28],esp
-	mov eax,[esp+4]
+	mov eax,[esp+4] ;第一个参数 
 	mov [eax],ebp
 	mov [eax+4],ebx
 	mov [eax+8],ecx
@@ -84,7 +84,7 @@ switchTo:
 	mov eax,ebx
 	pop ebx
 
-	mov eax,[esp+8]
+	mov eax,[esp+8] ;第二个参数
 	mov esp,[eax+28]
 	mov ebp,[eax]
 	mov ebx,[eax+4]
@@ -101,6 +101,10 @@ switchTo:
 	out 0x20,al
 	
 	ret
+
+[global _mm_pause]
+_mm_pause:
+	PAUSE
 
 [global gdtFlush];load gdt
 [extern gp]

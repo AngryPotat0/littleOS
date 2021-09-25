@@ -24,10 +24,11 @@ void threadInit()
 
 void threadCreate(uint32_t *id,threadFunction func,void *args,uint32_t pageAddr,uint32_t pageCounte)
 {
-    *id = (threadID++);
     cli();
+    *id = (threadID++);
     TCB *tcb = (TCB*)(pageAddr);
     tcb->kernelStackTop = pageAddr + pageCounte * 4096;
+    // printf("int threadCreate:%x\n",tcb->kernelStackTop);
     tcb->status = TASK_RUNNING;
     tcb->timeCounter = 0;
     tcb->timeLeft = TIME_CONT;
@@ -35,8 +36,11 @@ void threadCreate(uint32_t *id,threadFunction func,void *args,uint32_t pageAddr,
     tcb->pageAddr = pageAddr;
     tcb->pageCounte = pageCounte;
     *(--tcb->kernelStackTop) = args;
+    // printf("int threadCreate:%x\n",tcb->kernelStackTop);
     *(--tcb->kernelStackTop) = exit;
+    // printf("int threadCreate:%x\n",tcb->kernelStackTop);
     *(--tcb->kernelStackTop) = func;
+    // printf("int threadCreate:%x\n",tcb->kernelStackTop);
     tcb->context.esp = tcb->kernelStackTop;
     tcb->context.eflags = 0x200;
     tcb->next = curThread->next;

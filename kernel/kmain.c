@@ -11,7 +11,7 @@
 
 int at = 0;
 // mutex t;
-int volatile t;
+int t;
 
 void init()
 {
@@ -28,11 +28,23 @@ void init()
 void *func(void *args)
 {
     // cli();
-    spinlock(&t);
-    printf("running\n");
-    for(int i = 0;i < 1000000;i++)
-        at++;
-    spinUnlock(&t);
+    // spinlock(&t);
+    // printf("running\n");
+    // for(int i = 0;i < 1000000;i++)
+    //     at++;
+    // spinUnlock(&t);
+    printf("in func\n");
+}
+
+void *fun1(void *args)
+{
+    // cli();
+    // spinlock(&t);
+    // // printf("running\n");
+    // for(int i = 0;i < 500000;i++)
+    //     at++;
+    // spinUnlock(&t);
+    printf("in fun1\n");
 }
 
 void main()//TODO:
@@ -42,17 +54,25 @@ void main()//TODO:
     printf("LittleOS:\n>");
     mutexInit(&t);
     uint32_t id;
+    uint32_t id2;
     threadCreate(&id,func,NULL,pmmAlloc(),1);
-    
-    spinlock(&t);
-    for(int i = 0;i < 1000000;i++)
-        at++;
-    spinUnlock(&t);
+    threadCreate(&id2,fun1,NULL,pmmAlloc(),1);
+    printf("main\n");
+    // int a = pmmAlloc();
+    // int b = pmmAlloc();
 
-    for(int i = 0;i < 100000000;i++);
+    // printf("%x,%x\n",a);
+    
+    // spinlock(&t);
+    // for(int i = 0;i < 1000000;i++)
+    //     at++;
+    // spinUnlock(&t);
+
+    // for(int i = 0;i < 10000000;i++);
         // at++;
     // at = s100;
     // sti();
     // printf("print at\n");
+    printf("main2\n");
     printf("at=%d\n",at);
 }

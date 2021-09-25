@@ -10,8 +10,9 @@ extern TCB *curThread;
 extern int at;
 void timerServer(void *args)
 {
-    if(at > 16000000)
-        STOPROLL();
+    // if(at > 16000000)
+    //     STOPROLL();
+    printf("on thread %d\n",curThread->tid);
     if(curThread->timeLeft == 0)
     {
         // printf("schdule\n");
